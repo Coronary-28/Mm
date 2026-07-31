@@ -1224,7 +1224,112 @@
     renderExam();
     scrollQuestionIntoView(true);
   };
+     const __origRenderExamForReport = typeof renderExam === 'function' ? renderExam : null;
+  renderExam = function() {
+    if (__origRenderExamForReport) __origRenderExamForReport();
+    
+    const qHeader = document.querySelector('#question-container .question-header');
+    if (!qHeader) return;
+    if (document.getElementById('report-error-btn')) return;
 
+    const btn = document.createElement('button');
+    btn.id = 'report-error-btn';
+    btn.className = 'report-error-btn';
+    btn.textContent = 'الإبلاغ عن خطأ !';
+    
+    btn.onclick = function(e) {
+        e.stopPropagation();
+        openReportDialog();
+    };
+
+    const qNum = qHeader.querySelector('.question-number');
+    if (qNum) {
+        qNum.parentNode.insertBefore(btn, qNum.nextSibling);
+    } else {
+        qHeader.appendChild(btn);
+    }
+  };
+
+  window.openReportDialog = function() {
+    if (!state.currentExam) return;
+    const q = state.currentExam.questions[state.currentExam.currentIndex];
+    
+    let html = `
+        <div class="report-options-container">
+            <button class="btn-secondary report-option-btn" onclick="confirmReport('خطأ في السؤال', '${q.id}')">خطأ في السؤال</button>
+            <button class="btn-secondary report-option-btn" onclick="confirmReport('لا يوجد جواب صحيح', '${q.id}')">لا يوجد جواب صحيح</button>
+            <button class="btn-secondary report-option-btn" onclick="confirmReport('يوجد أكثر من جواب صحيح', '${q.id}')">يوجد أكثر من جواب صحيح</button>
+            <button class="btn-secondary report-option-btn" onclick="confirmReport('خطأ في الـ Explanation', '${q.id}')">خطأ في الـ Explanation</button>
+            <button class="btn-secondary report-option-btn" onclick="confirmReport('خطأ آخر', '${q.id}')">خطأ آخر</button>
+        </div>
+    `;
+
+    showDialog({
+        title: 'خيارات الإبلاغ',
+        message: html,
+        showCancel: true,
+        cancelText: 'إلغاء',
+        confirmText: ''
+    });
+
+    setTimeout(() => {
+        const confirmBtn = document.getElementById('dialog-confirm');
+        if (confirmBtn) confirmBtn.style.display = 'none';
+    }, 0);
+  };
+
+  window.confirmReport = function(reasonStr, qId) {
+    hideDialog();
+    setTimeout(() => {
+        showDialog({
+            title: 'تأكيد الإبلاغ',
+            message: 'هل أنت متأكد من رغبتك بالإبلاغ عن هذا السؤال ؟',
+            showCancel: true,
+            confirmText: 'نعم',
+            cancelText: 'إلغاء',
+            onConfirm: () => {
+                sendReportToTelegram(reasonStr, qId);
+            }
+        });
+        setTimeout(() => {
+            const confirmBtn = document.getElementById('dialog-confirm');
+            if (confirmBtn) confirmBtn.style.display = 'inline-block';
+        }, 0);
+    }, 100);
+  };
+
+  window.sendReportToTelegram = function(reasonStr, qId) {
+    if (!state.currentExam) return;
+    const q = state.currentExam.questions.find(x => x.id === qId);
+    if (!q) return;
+
+    let reasonMapped = '';
+    if (reasonStr === 'خطأ في السؤال') reasonMapped = 'نَص السؤال';
+    else if (reasonStr === 'لا يوجد جواب صحيح') reasonMapped = 'الخيارات فلا يوجد فيها جواب صحيح';
+    else if (reasonStr === 'يوجد أكثر من جواب صحيح') reasonMapped = 'الخيارات فهناك أكثر من جواب صحيح';
+    else if (reasonStr === 'خطأ في الـ Explanation') reasonMapped = 'الـ Explanation';
+    else if (reasonStr === 'خطأ آخر') reasonMapped = '(   )';
+
+    let optionsText = (q.originalOptions || q.options || []).map((opt, i) => `${String.fromCharCode(65+i)}) ${opt}`).join('\n');
+    let explanationText = q.explanation ? `\nExplanation:\n${q.explanation}` : '';
+    let correctAnswerText = q.correctAnswer || q.correctAnswerText || '';
+    
+    let subjectName = q.subjectName || state.currentSubject?.name || '';
+    let lectureName = q.lectureName || '';
+    
+    let qContent = `${q.text}\n${optionsText}\nCorrect Answer: ${correctAnswerText}${explanationText}`;
+    
+    let message = `السلام عليكم
+أنا الان أقوم بحل امتحان في مادة "${subjectName}" وواجهت سؤال من محاضرة "${lectureName}" وأظن أن هناك خطأ في "${reasonMapped}"
+، وهذا هو السؤال :
+"
+${qContent}
+" .
+أرجو التأكد من ذلك ، وجزاكم الله خيرًا .`;
+
+    const telegramUrl = 'https://t.me/+83WV3IVs0IswMGJk?text=' + encodeURIComponent(message);
+    window.open(telegramUrl, '_blank');
+  };
     showAnswer = function(){
     if(!state.currentExam) return;
     state.currentExam.showAnswer = true;
