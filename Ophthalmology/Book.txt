@@ -1,0 +1,86 @@
+~Choose the correct answers~
+Select all the correct statements regarding the Cornea:
+A) Has an endothelial layer that regenerates readily. 
+B) Has an epithelial layer that fails to regenerate.
+C) The endothelium actively pumps water from the stroma. 
+D) Is an important refractive component of the eye.
+E) Has a stroma composed of randomly arranged collagen fibrils.
+Correct Answer: C) The endothelium actively pumps water from the stroma. / D) Is an important refractive component of the eye.
+Explanation : A) False. The human endothelium does not regenerate; dead cells are replaced by the spreading of surviving cells. B) False. The epithelial layer readily regenerates. C) True. The endothelial cells pump out ions and the water follows osmotically. Removal of water maintains corneal transparency. D) True. The cornea is a more powerful refractive element than the natural lens of the eye. E) False. The fine, equally spaced, stromal collagen fibrils are arranged in parallel and packed in an orderly manner. This is a requirement for transparency.
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Retina:
+A) Is ten layers thick.
+B) Has ganglion cells whose axons form the optic nerve.
+C) Has three types of rods responsible for colour vision.
+D) The neuroretina is firmly attached to the retinal pigment epithelium.
+E) The RPE delivers vitamin A for rhodopsin production.
+Correct Answer: A) Is ten layers thick. / B) Has ganglion cells whose axons form the optic nerve. / E) The RPE delivers vitamin A for rhodopsin production.
+Explanation : A) True. B) True. The retinal ganglion cell axons form the retinal nerve fibre layer and exit the eye at the optic nerve head. C) False. The rods are responsible for night vision and three cone types are responsible for daylight and colour vision. D) False. The attachment is loose; the neuroretina separates from the RPE in retinal detachment. E) True. Vitamin A is delivered by the RPE to the photoreceptors and combined with opsin.
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Lens:
+A) Grows throughout life.
+B) Is surrounded by a collagenous capsule.
+C) Cortex and nucleus are rich in organelles.
+D) Has a high refractive index owing to its protein content.
+E) Shape becomes more curved during accommodation for near.
+Correct Answer: A) Grows throughout life. / B) Is surrounded by a collagenous capsule. / D) Has a high refractive index owing to its protein content. / E) Shape becomes more curved during accommodation for near.
+Explanation : A) True. It does grow throughout life. B) True. This is of great importance in cataract surgery. C) False. The older, deep cortical and nuclear fibres lose their nuclei and other organelles. D) True. The high protein content accounts for its high refractive index. E) True.
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Suspensory ligament of the lens (the zonule):
+A) Attaches the lens to the ciliary body.
+B) Is part of the iridocorneal angle.
+C) Is composed of smooth muscle.
+D) Transmits changes in tension to the lens capsule.
+Correct Answer: A) Attaches the lens to the ciliary body. / D) Transmits changes in tension to the lens capsule.
+Explanation : A) True. Zonular fibres extend from the pars plicata of the ciliary body to the lens equator. B) False. The zonule lies behind the iris and iridocorneal angle. C) False. The ciliary muscle contains smooth muscle, not the zonule, which is acellular. D) True. Contraction of the ciliary muscle relaxes the zonular fibres allowing the lens to increase its curvature and thus its refractive power (this is ‘accommodation’).
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Posterior chamber:
+A) Is another name for the vitreous body.
+B) Lies between the iris, lens and ciliary body.
+C) Contains aqueous humour, secreted by the ciliary processes.
+D) Is in communication with the anterior chamber.
+Correct Answer: B) Lies between the iris, lens and ciliary body. / C) Contains aqueous humour, secreted by the ciliary processes. / D) Is in communication with the anterior chamber.
+Explanation : A) False. The vitreous body is quite separate. B) True. D) True. D) True. Communication is via the pupil, in the gap between iris and lens at the pupil margin. If this gap is narrowed or closed, pressure in the posterior chamber pushes the iris forward and may close the angle (acute closed-angle glaucoma).
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Tear film:
+A) Is 100 μm thick.
+B) Tears are drained by the nasolacrimal system.
+C) The mucoaqueous layer is in contact with the cornea.
+D) Is important in the refraction of light entering the eye.
+E) Contains lysozyme and secretory IgA.
+Correct Answer: B) Tears are drained by the nasolacrimal system. / C) The mucoaqueous layer is in contact with the cornea. / D) Is important in the refraction of light entering the eye. / E) Contains lysozyme and secretory IgA.
+Explanation : A) False. The tear film is about 3 μm thick. B) True. There is a punctum on the medial aspect of both upper and lower eyelids. These allow tears to drain into the nasolacrimal drainage system. C) True. The mucin layer is produced by goblet cells. D) True. It provides a smooth interface for the refraction of light. E) True. These account for the antibacterial properties of the tear film.
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Iridocorneal Angle:
+A) Is the site of aqueous production.
+B) Lies between the cornea and the ciliary body.
+C) In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork.
+D) Fluid passes through the trabecular meshwork to Schlemm’s canal.
+Correct Answer: B) Lies between the cornea and the ciliary body. / C) In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork. / D) Fluid passes through the trabecular meshwork to Schlemm’s canal.
+Explanation : A) False. It is the site of aqueous drainage. B) True. C) True. This may reduce aqueous drainage. D) True. Flow depends on the pressure gradient between the anterior chamber and Schlemm’s canal and there is also an active component.
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Optic Nerve:
+A) Axons leave the eyeball through the cribriform plate.
+B) Is not bathed in CSF until it enters the cranial cavity.
+C) Anteriorly is supplied by blood from the ciliary arteries.
+D) Axons are not myelinated in the retrobulbar part of the nerve.
+E) Is formed by axons of the nerve fibre layer of the retina.
+Correct Answer: A) Axons leave the eyeball through the cribriform plate. / C) Anteriorly is supplied by blood from the ciliary arteries. / D) Axons are not myelinated in the retrobulbar part of the nerve. / E) Is formed by axons of the nerve fibre layer of the retina.
+Explanation : A) True. This sieve-like structure provides support for the optic nerve as it leaves the eye. B) False. In the orbit, outside its pial sheath, the optic nerve is surrounded by cerebrospinal fluid within the subarachnoid space. This is in continuity with that in the intracranial cavity. C) True. The supply to the anterior part of the optic nerve differs from the supply to the anteriorlayers of the retina. D) True. This is a most important blood supply for the anterior optic nerve. E) False. They are usually not myelinated within the eye. F) True. It is made up from retinal ganglion cell axons.
+###
+~Choose the correct answers~
+Select all the correct statements regarding the Third, Fourth and Sixth Cranial Nerves:
+A) All originate in the midbrain.
+B) A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus.
+C) The fourth nerve supplies the lateral rectus.
+D) The sixth nerve has a long intracranial course.
+E) The third nerve may be affected by aneurysms of the posterior communicating artery.
+Correct Answer: B) A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus. / D) The sixth nerve has a long intracranial course. / E) The third nerve may be affected by aneurysms of the posterior communicating artery.
+Explanation : A) False. The nuclei of the sixth and seventh nerves lie in the pons. B) True. The superior rectus is innervated by the contralateral nucleus. C) False. It supplies the superior oblique. D) True. This makes the sixth nerve susceptible to trauma, which may cause lateral rectus palsy. E) True. It passes lateral to the artery.
