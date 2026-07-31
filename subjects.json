@@ -618,6 +618,343 @@
             "sourceType": "lecture"
           }
         ]
+      },
+      {
+        "id": "ophthalmology__lecture__book",
+        "name": "Book",
+        "type": "lecture",
+        "subjectName": "Ophthalmology",
+        "path": "Ophthalmology/Book.txt",
+        "questions": [
+          {
+            "id": "ophthalmology__lecture__book__1__k1fc7e",
+            "number": "1",
+            "text": "Select all the correct statements regarding the Cornea:",
+            "options": [
+              "Has an endothelial layer that regenerates readily.",
+              "Has an epithelial layer that fails to regenerate.",
+              "The endothelium actively pumps water from the stroma.",
+              "Is an important refractive component of the eye.",
+              "Has a stroma composed of randomly arranged collagen fibrils."
+            ],
+            "originalOptions": [
+              "Has an endothelial layer that regenerates readily.",
+              "Has an epithelial layer that fails to regenerate.",
+              "The endothelium actively pumps water from the stroma.",
+              "Is an important refractive component of the eye.",
+              "Has a stroma composed of randomly arranged collagen fibrils."
+            ],
+            "correctAnswer": "C) The endothelium actively pumps water from the stroma. / D) Is an important refractive component of the eye.",
+            "correctAnswerText": "C) The endothelium actively pumps water from the stroma. / D) Is an important refractive component of the eye.",
+            "correctIndex": -1,
+            "correctIndices": [
+              2,
+              3
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) False. The human endothelium does not regenerate; dead cells are replaced by the spreading of surviving cells. B) False. The epithelial layer readily regenerates. C) True. The endothelial cells pump out ions and the water follows osmotically. Removal of water maintains corneal transparency. D) True. The cornea is a more powerful refractive element than the natural lens of the eye. E) False. The fine, equally spaced, stromal collagen fibrils are arranged in parallel and packed in an orderly manner. This is a requirement for transparency.",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__2__ho8vsx",
+            "number": "2",
+            "text": "Select all the correct statements regarding the Retina:",
+            "options": [
+              "Is ten layers thick.",
+              "Has ganglion cells whose axons form the optic nerve.",
+              "Has three types of rods responsible for colour vision.",
+              "The neuroretina is firmly attached to the retinal pigment epithelium.",
+              "The RPE delivers vitamin A for rhodopsin production."
+            ],
+            "originalOptions": [
+              "Is ten layers thick.",
+              "Has ganglion cells whose axons form the optic nerve.",
+              "Has three types of rods responsible for colour vision.",
+              "The neuroretina is firmly attached to the retinal pigment epithelium.",
+              "The RPE delivers vitamin A for rhodopsin production."
+            ],
+            "correctAnswer": "A) Is ten layers thick. / B) Has ganglion cells whose axons form the optic nerve. / E) The RPE delivers vitamin A for rhodopsin production.",
+            "correctAnswerText": "A) Is ten layers thick. / B) Has ganglion cells whose axons form the optic nerve. / E) The RPE delivers vitamin A for rhodopsin production.",
+            "correctIndex": -1,
+            "correctIndices": [
+              0,
+              1,
+              4
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) True. B) True. The retinal ganglion cell axons form the retinal nerve fibre layer and exit the eye at the optic nerve head. C) False. The rods are responsible for night vision and three cone types are responsible for daylight and colour vision. D) False. The attachment is loose; the neuroretina separates from the RPE in retinal detachment. E) True. Vitamin A is delivered by the RPE to the photoreceptors and combined with opsin.",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__3__7i3unw",
+            "number": "3",
+            "text": "Select all the correct statements regarding the Lens:",
+            "options": [
+              "Grows throughout life.",
+              "Is surrounded by a collagenous capsule.",
+              "Cortex and nucleus are rich in organelles.",
+              "Has a high refractive index owing to its protein content.",
+              "Shape becomes more curved during accommodation for near."
+            ],
+            "originalOptions": [
+              "Grows throughout life.",
+              "Is surrounded by a collagenous capsule.",
+              "Cortex and nucleus are rich in organelles.",
+              "Has a high refractive index owing to its protein content.",
+              "Shape becomes more curved during accommodation for near."
+            ],
+            "correctAnswer": "A) Grows throughout life. / B) Is surrounded by a collagenous capsule. / D) Has a high refractive index owing to its protein content. / E) Shape becomes more curved during accommodation for near.",
+            "correctAnswerText": "A) Grows throughout life. / B) Is surrounded by a collagenous capsule. / D) Has a high refractive index owing to its protein content. / E) Shape becomes more curved during accommodation for near.",
+            "correctIndex": -1,
+            "correctIndices": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) True. It does grow throughout life. B) True. This is of great importance in cataract surgery. C) False. The older, deep cortical and nuclear fibres lose their nuclei and other organelles. D) True. The high protein content accounts for its high refractive index. E) True.",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__4__ioy8sd",
+            "number": "4",
+            "text": "Select all the correct statements regarding the Suspensory ligament of the lens (the zonule):",
+            "options": [
+              "Attaches the lens to the ciliary body.",
+              "Is part of the iridocorneal angle.",
+              "Is composed of smooth muscle.",
+              "Transmits changes in tension to the lens capsule."
+            ],
+            "originalOptions": [
+              "Attaches the lens to the ciliary body.",
+              "Is part of the iridocorneal angle.",
+              "Is composed of smooth muscle.",
+              "Transmits changes in tension to the lens capsule."
+            ],
+            "correctAnswer": "A) Attaches the lens to the ciliary body. / D) Transmits changes in tension to the lens capsule.",
+            "correctAnswerText": "A) Attaches the lens to the ciliary body. / D) Transmits changes in tension to the lens capsule.",
+            "correctIndex": -1,
+            "correctIndices": [
+              0,
+              3
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) True. Zonular fibres extend from the pars plicata of the ciliary body to the lens equator. B) False. The zonule lies behind the iris and iridocorneal angle. C) False. The ciliary muscle contains smooth muscle, not the zonule, which is acellular. D) True. Contraction of the ciliary muscle relaxes the zonular fibres allowing the lens to increase its curvature and thus its refractive power (this is ‘accommodation’).",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__5__6zg2tf",
+            "number": "5",
+            "text": "Select all the correct statements regarding the Posterior chamber:",
+            "options": [
+              "Is another name for the vitreous body.",
+              "Lies between the iris, lens and ciliary body.",
+              "Contains aqueous humour, secreted by the ciliary processes.",
+              "Is in communication with the anterior chamber."
+            ],
+            "originalOptions": [
+              "Is another name for the vitreous body.",
+              "Lies between the iris, lens and ciliary body.",
+              "Contains aqueous humour, secreted by the ciliary processes.",
+              "Is in communication with the anterior chamber."
+            ],
+            "correctAnswer": "B) Lies between the iris, lens and ciliary body. / C) Contains aqueous humour, secreted by the ciliary processes. / D) Is in communication with the anterior chamber.",
+            "correctAnswerText": "B) Lies between the iris, lens and ciliary body. / C) Contains aqueous humour, secreted by the ciliary processes. / D) Is in communication with the anterior chamber.",
+            "correctIndex": -1,
+            "correctIndices": [
+              1,
+              2,
+              3
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) False. The vitreous body is quite separate. B) True. D) True. D) True. Communication is via the pupil, in the gap between iris and lens at the pupil margin. If this gap is narrowed or closed, pressure in the posterior chamber pushes the iris forward and may close the angle (acute closed-angle glaucoma).",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__6__7k7e2g",
+            "number": "6",
+            "text": "Select all the correct statements regarding the Tear film:",
+            "options": [
+              "Is 100 μm thick.",
+              "Tears are drained by the nasolacrimal system.",
+              "The mucoaqueous layer is in contact with the cornea.",
+              "Is important in the refraction of light entering the eye.",
+              "Contains lysozyme and secretory IgA."
+            ],
+            "originalOptions": [
+              "Is 100 μm thick.",
+              "Tears are drained by the nasolacrimal system.",
+              "The mucoaqueous layer is in contact with the cornea.",
+              "Is important in the refraction of light entering the eye.",
+              "Contains lysozyme and secretory IgA."
+            ],
+            "correctAnswer": "B) Tears are drained by the nasolacrimal system. / C) The mucoaqueous layer is in contact with the cornea. / D) Is important in the refraction of light entering the eye. / E) Contains lysozyme and secretory IgA.",
+            "correctAnswerText": "B) Tears are drained by the nasolacrimal system. / C) The mucoaqueous layer is in contact with the cornea. / D) Is important in the refraction of light entering the eye. / E) Contains lysozyme and secretory IgA.",
+            "correctIndex": -1,
+            "correctIndices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) False. The tear film is about 3 μm thick. B) True. There is a punctum on the medial aspect of both upper and lower eyelids. These allow tears to drain into the nasolacrimal drainage system. C) True. The mucin layer is produced by goblet cells. D) True. It provides a smooth interface for the refraction of light. E) True. These account for the antibacterial properties of the tear film.",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__7__skxed2",
+            "number": "7",
+            "text": "Select all the correct statements regarding the Iridocorneal Angle:",
+            "options": [
+              "Is the site of aqueous production.",
+              "Lies between the cornea and the ciliary body.",
+              "In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork.",
+              "Fluid passes through the trabecular meshwork to Schlemm’s canal."
+            ],
+            "originalOptions": [
+              "Is the site of aqueous production.",
+              "Lies between the cornea and the ciliary body.",
+              "In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork.",
+              "Fluid passes through the trabecular meshwork to Schlemm’s canal."
+            ],
+            "correctAnswer": "B) Lies between the cornea and the ciliary body. / C) In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork. / D) Fluid passes through the trabecular meshwork to Schlemm’s canal.",
+            "correctAnswerText": "B) Lies between the cornea and the ciliary body. / C) In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork. / D) Fluid passes through the trabecular meshwork to Schlemm’s canal.",
+            "correctIndex": -1,
+            "correctIndices": [
+              1,
+              2,
+              3
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) False. It is the site of aqueous drainage. B) True. C) True. This may reduce aqueous drainage. D) True. Flow depends on the pressure gradient between the anterior chamber and Schlemm’s canal and there is also an active component.",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__8__dzseb",
+            "number": "8",
+            "text": "Select all the correct statements regarding the Optic Nerve:",
+            "options": [
+              "Axons leave the eyeball through the cribriform plate.",
+              "Is not bathed in CSF until it enters the cranial cavity.",
+              "Anteriorly is supplied by blood from the ciliary arteries.",
+              "Axons are not myelinated in the retrobulbar part of the nerve.",
+              "Is formed by axons of the nerve fibre layer of the retina."
+            ],
+            "originalOptions": [
+              "Axons leave the eyeball through the cribriform plate.",
+              "Is not bathed in CSF until it enters the cranial cavity.",
+              "Anteriorly is supplied by blood from the ciliary arteries.",
+              "Axons are not myelinated in the retrobulbar part of the nerve.",
+              "Is formed by axons of the nerve fibre layer of the retina."
+            ],
+            "correctAnswer": "A) Axons leave the eyeball through the cribriform plate. / C) Anteriorly is supplied by blood from the ciliary arteries. / D) Axons are not myelinated in the retrobulbar part of the nerve. / E) Is formed by axons of the nerve fibre layer of the retina.",
+            "correctAnswerText": "A) Axons leave the eyeball through the cribriform plate. / C) Anteriorly is supplied by blood from the ciliary arteries. / D) Axons are not myelinated in the retrobulbar part of the nerve. / E) Is formed by axons of the nerve fibre layer of the retina.",
+            "correctIndex": -1,
+            "correctIndices": [
+              0,
+              2,
+              3,
+              4
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) True. This sieve-like structure provides support for the optic nerve as it leaves the eye. B) False. In the orbit, outside its pial sheath, the optic nerve is surrounded by cerebrospinal fluid within the subarachnoid space. This is in continuity with that in the intracranial cavity. C) True. The supply to the anterior part of the optic nerve differs from the supply to the anteriorlayers of the retina. D) True. This is a most important blood supply for the anterior optic nerve. E) False. They are usually not myelinated within the eye. F) True. It is made up from retinal ganglion cell axons.",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          },
+          {
+            "id": "ophthalmology__lecture__book__9__u960s5",
+            "number": "9",
+            "text": "Select all the correct statements regarding the Third, Fourth and Sixth Cranial Nerves:",
+            "options": [
+              "All originate in the midbrain.",
+              "A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus.",
+              "The fourth nerve supplies the lateral rectus.",
+              "The sixth nerve has a long intracranial course.",
+              "The third nerve may be affected by aneurysms of the posterior communicating artery."
+            ],
+            "originalOptions": [
+              "All originate in the midbrain.",
+              "A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus.",
+              "The fourth nerve supplies the lateral rectus.",
+              "The sixth nerve has a long intracranial course.",
+              "The third nerve may be affected by aneurysms of the posterior communicating artery."
+            ],
+            "correctAnswer": "B) A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus. / D) The sixth nerve has a long intracranial course. / E) The third nerve may be affected by aneurysms of the posterior communicating artery.",
+            "correctAnswerText": "B) A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus. / D) The sixth nerve has a long intracranial course. / E) The third nerve may be affected by aneurysms of the posterior communicating artery.",
+            "correctIndex": -1,
+            "correctIndices": [
+              1,
+              3,
+              4
+            ],
+            "isMultiple": true,
+            "correctAnswerLetter": "",
+            "explanation": "A) False. The nuclei of the sixth and seventh nerves lie in the pons. B) True. The superior rectus is innervated by the contralateral nucleus. C) False. It supplies the superior oblique. D) True. This makes the sixth nerve susceptible to trauma, which may cause lateral rectus palsy. E) True. It passes lateral to the artery.",
+            "batchName": "",
+            "pageNumber": "",
+            "subjectName": "Ophthalmology",
+            "subjectId": "ophthalmology",
+            "lectureName": "Book",
+            "groupName": "Book",
+            "sourceType": "lecture"
+          }
+        ]
       }
     ],
     "ai": [],
@@ -1229,10 +1566,338 @@
         "lectureName": "Anatomy of the Eye",
         "groupName": "Anatomy of the Eye",
         "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__1__k1fc7e",
+        "number": "1",
+        "text": "Select all the correct statements regarding the Cornea:",
+        "options": [
+          "Has an endothelial layer that regenerates readily.",
+          "Has an epithelial layer that fails to regenerate.",
+          "The endothelium actively pumps water from the stroma.",
+          "Is an important refractive component of the eye.",
+          "Has a stroma composed of randomly arranged collagen fibrils."
+        ],
+        "originalOptions": [
+          "Has an endothelial layer that regenerates readily.",
+          "Has an epithelial layer that fails to regenerate.",
+          "The endothelium actively pumps water from the stroma.",
+          "Is an important refractive component of the eye.",
+          "Has a stroma composed of randomly arranged collagen fibrils."
+        ],
+        "correctAnswer": "C) The endothelium actively pumps water from the stroma. / D) Is an important refractive component of the eye.",
+        "correctAnswerText": "C) The endothelium actively pumps water from the stroma. / D) Is an important refractive component of the eye.",
+        "correctIndex": -1,
+        "correctIndices": [
+          2,
+          3
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) False. The human endothelium does not regenerate; dead cells are replaced by the spreading of surviving cells. B) False. The epithelial layer readily regenerates. C) True. The endothelial cells pump out ions and the water follows osmotically. Removal of water maintains corneal transparency. D) True. The cornea is a more powerful refractive element than the natural lens of the eye. E) False. The fine, equally spaced, stromal collagen fibrils are arranged in parallel and packed in an orderly manner. This is a requirement for transparency.",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__2__ho8vsx",
+        "number": "2",
+        "text": "Select all the correct statements regarding the Retina:",
+        "options": [
+          "Is ten layers thick.",
+          "Has ganglion cells whose axons form the optic nerve.",
+          "Has three types of rods responsible for colour vision.",
+          "The neuroretina is firmly attached to the retinal pigment epithelium.",
+          "The RPE delivers vitamin A for rhodopsin production."
+        ],
+        "originalOptions": [
+          "Is ten layers thick.",
+          "Has ganglion cells whose axons form the optic nerve.",
+          "Has three types of rods responsible for colour vision.",
+          "The neuroretina is firmly attached to the retinal pigment epithelium.",
+          "The RPE delivers vitamin A for rhodopsin production."
+        ],
+        "correctAnswer": "A) Is ten layers thick. / B) Has ganglion cells whose axons form the optic nerve. / E) The RPE delivers vitamin A for rhodopsin production.",
+        "correctAnswerText": "A) Is ten layers thick. / B) Has ganglion cells whose axons form the optic nerve. / E) The RPE delivers vitamin A for rhodopsin production.",
+        "correctIndex": -1,
+        "correctIndices": [
+          0,
+          1,
+          4
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) True. B) True. The retinal ganglion cell axons form the retinal nerve fibre layer and exit the eye at the optic nerve head. C) False. The rods are responsible for night vision and three cone types are responsible for daylight and colour vision. D) False. The attachment is loose; the neuroretina separates from the RPE in retinal detachment. E) True. Vitamin A is delivered by the RPE to the photoreceptors and combined with opsin.",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__3__7i3unw",
+        "number": "3",
+        "text": "Select all the correct statements regarding the Lens:",
+        "options": [
+          "Grows throughout life.",
+          "Is surrounded by a collagenous capsule.",
+          "Cortex and nucleus are rich in organelles.",
+          "Has a high refractive index owing to its protein content.",
+          "Shape becomes more curved during accommodation for near."
+        ],
+        "originalOptions": [
+          "Grows throughout life.",
+          "Is surrounded by a collagenous capsule.",
+          "Cortex and nucleus are rich in organelles.",
+          "Has a high refractive index owing to its protein content.",
+          "Shape becomes more curved during accommodation for near."
+        ],
+        "correctAnswer": "A) Grows throughout life. / B) Is surrounded by a collagenous capsule. / D) Has a high refractive index owing to its protein content. / E) Shape becomes more curved during accommodation for near.",
+        "correctAnswerText": "A) Grows throughout life. / B) Is surrounded by a collagenous capsule. / D) Has a high refractive index owing to its protein content. / E) Shape becomes more curved during accommodation for near.",
+        "correctIndex": -1,
+        "correctIndices": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) True. It does grow throughout life. B) True. This is of great importance in cataract surgery. C) False. The older, deep cortical and nuclear fibres lose their nuclei and other organelles. D) True. The high protein content accounts for its high refractive index. E) True.",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__4__ioy8sd",
+        "number": "4",
+        "text": "Select all the correct statements regarding the Suspensory ligament of the lens (the zonule):",
+        "options": [
+          "Attaches the lens to the ciliary body.",
+          "Is part of the iridocorneal angle.",
+          "Is composed of smooth muscle.",
+          "Transmits changes in tension to the lens capsule."
+        ],
+        "originalOptions": [
+          "Attaches the lens to the ciliary body.",
+          "Is part of the iridocorneal angle.",
+          "Is composed of smooth muscle.",
+          "Transmits changes in tension to the lens capsule."
+        ],
+        "correctAnswer": "A) Attaches the lens to the ciliary body. / D) Transmits changes in tension to the lens capsule.",
+        "correctAnswerText": "A) Attaches the lens to the ciliary body. / D) Transmits changes in tension to the lens capsule.",
+        "correctIndex": -1,
+        "correctIndices": [
+          0,
+          3
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) True. Zonular fibres extend from the pars plicata of the ciliary body to the lens equator. B) False. The zonule lies behind the iris and iridocorneal angle. C) False. The ciliary muscle contains smooth muscle, not the zonule, which is acellular. D) True. Contraction of the ciliary muscle relaxes the zonular fibres allowing the lens to increase its curvature and thus its refractive power (this is ‘accommodation’).",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__5__6zg2tf",
+        "number": "5",
+        "text": "Select all the correct statements regarding the Posterior chamber:",
+        "options": [
+          "Is another name for the vitreous body.",
+          "Lies between the iris, lens and ciliary body.",
+          "Contains aqueous humour, secreted by the ciliary processes.",
+          "Is in communication with the anterior chamber."
+        ],
+        "originalOptions": [
+          "Is another name for the vitreous body.",
+          "Lies between the iris, lens and ciliary body.",
+          "Contains aqueous humour, secreted by the ciliary processes.",
+          "Is in communication with the anterior chamber."
+        ],
+        "correctAnswer": "B) Lies between the iris, lens and ciliary body. / C) Contains aqueous humour, secreted by the ciliary processes. / D) Is in communication with the anterior chamber.",
+        "correctAnswerText": "B) Lies between the iris, lens and ciliary body. / C) Contains aqueous humour, secreted by the ciliary processes. / D) Is in communication with the anterior chamber.",
+        "correctIndex": -1,
+        "correctIndices": [
+          1,
+          2,
+          3
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) False. The vitreous body is quite separate. B) True. D) True. D) True. Communication is via the pupil, in the gap between iris and lens at the pupil margin. If this gap is narrowed or closed, pressure in the posterior chamber pushes the iris forward and may close the angle (acute closed-angle glaucoma).",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__6__7k7e2g",
+        "number": "6",
+        "text": "Select all the correct statements regarding the Tear film:",
+        "options": [
+          "Is 100 μm thick.",
+          "Tears are drained by the nasolacrimal system.",
+          "The mucoaqueous layer is in contact with the cornea.",
+          "Is important in the refraction of light entering the eye.",
+          "Contains lysozyme and secretory IgA."
+        ],
+        "originalOptions": [
+          "Is 100 μm thick.",
+          "Tears are drained by the nasolacrimal system.",
+          "The mucoaqueous layer is in contact with the cornea.",
+          "Is important in the refraction of light entering the eye.",
+          "Contains lysozyme and secretory IgA."
+        ],
+        "correctAnswer": "B) Tears are drained by the nasolacrimal system. / C) The mucoaqueous layer is in contact with the cornea. / D) Is important in the refraction of light entering the eye. / E) Contains lysozyme and secretory IgA.",
+        "correctAnswerText": "B) Tears are drained by the nasolacrimal system. / C) The mucoaqueous layer is in contact with the cornea. / D) Is important in the refraction of light entering the eye. / E) Contains lysozyme and secretory IgA.",
+        "correctIndex": -1,
+        "correctIndices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) False. The tear film is about 3 μm thick. B) True. There is a punctum on the medial aspect of both upper and lower eyelids. These allow tears to drain into the nasolacrimal drainage system. C) True. The mucin layer is produced by goblet cells. D) True. It provides a smooth interface for the refraction of light. E) True. These account for the antibacterial properties of the tear film.",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__7__skxed2",
+        "number": "7",
+        "text": "Select all the correct statements regarding the Iridocorneal Angle:",
+        "options": [
+          "Is the site of aqueous production.",
+          "Lies between the cornea and the ciliary body.",
+          "In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork.",
+          "Fluid passes through the trabecular meshwork to Schlemm’s canal."
+        ],
+        "originalOptions": [
+          "Is the site of aqueous production.",
+          "Lies between the cornea and the ciliary body.",
+          "In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork.",
+          "Fluid passes through the trabecular meshwork to Schlemm’s canal."
+        ],
+        "correctAnswer": "B) Lies between the cornea and the ciliary body. / C) In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork. / D) Fluid passes through the trabecular meshwork to Schlemm’s canal.",
+        "correctAnswerText": "B) Lies between the cornea and the ciliary body. / C) In primary open-angle glaucoma, there is a reduction in the number of cells covering the trabecular meshwork. / D) Fluid passes through the trabecular meshwork to Schlemm’s canal.",
+        "correctIndex": -1,
+        "correctIndices": [
+          1,
+          2,
+          3
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) False. It is the site of aqueous drainage. B) True. C) True. This may reduce aqueous drainage. D) True. Flow depends on the pressure gradient between the anterior chamber and Schlemm’s canal and there is also an active component.",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__8__dzseb",
+        "number": "8",
+        "text": "Select all the correct statements regarding the Optic Nerve:",
+        "options": [
+          "Axons leave the eyeball through the cribriform plate.",
+          "Is not bathed in CSF until it enters the cranial cavity.",
+          "Anteriorly is supplied by blood from the ciliary arteries.",
+          "Axons are not myelinated in the retrobulbar part of the nerve.",
+          "Is formed by axons of the nerve fibre layer of the retina."
+        ],
+        "originalOptions": [
+          "Axons leave the eyeball through the cribriform plate.",
+          "Is not bathed in CSF until it enters the cranial cavity.",
+          "Anteriorly is supplied by blood from the ciliary arteries.",
+          "Axons are not myelinated in the retrobulbar part of the nerve.",
+          "Is formed by axons of the nerve fibre layer of the retina."
+        ],
+        "correctAnswer": "A) Axons leave the eyeball through the cribriform plate. / C) Anteriorly is supplied by blood from the ciliary arteries. / D) Axons are not myelinated in the retrobulbar part of the nerve. / E) Is formed by axons of the nerve fibre layer of the retina.",
+        "correctAnswerText": "A) Axons leave the eyeball through the cribriform plate. / C) Anteriorly is supplied by blood from the ciliary arteries. / D) Axons are not myelinated in the retrobulbar part of the nerve. / E) Is formed by axons of the nerve fibre layer of the retina.",
+        "correctIndex": -1,
+        "correctIndices": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) True. This sieve-like structure provides support for the optic nerve as it leaves the eye. B) False. In the orbit, outside its pial sheath, the optic nerve is surrounded by cerebrospinal fluid within the subarachnoid space. This is in continuity with that in the intracranial cavity. C) True. The supply to the anterior part of the optic nerve differs from the supply to the anteriorlayers of the retina. D) True. This is a most important blood supply for the anterior optic nerve. E) False. They are usually not myelinated within the eye. F) True. It is made up from retinal ganglion cell axons.",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
+      },
+      {
+        "id": "ophthalmology__lecture__book__9__u960s5",
+        "number": "9",
+        "text": "Select all the correct statements regarding the Third, Fourth and Sixth Cranial Nerves:",
+        "options": [
+          "All originate in the midbrain.",
+          "A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus.",
+          "The fourth nerve supplies the lateral rectus.",
+          "The sixth nerve has a long intracranial course.",
+          "The third nerve may be affected by aneurysms of the posterior communicating artery."
+        ],
+        "originalOptions": [
+          "All originate in the midbrain.",
+          "A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus.",
+          "The fourth nerve supplies the lateral rectus.",
+          "The sixth nerve has a long intracranial course.",
+          "The third nerve may be affected by aneurysms of the posterior communicating artery."
+        ],
+        "correctAnswer": "B) A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus. / D) The sixth nerve has a long intracranial course. / E) The third nerve may be affected by aneurysms of the posterior communicating artery.",
+        "correctAnswerText": "B) A nuclear third nerve palsy will cause a contralateral palsy of the superior rectus. / D) The sixth nerve has a long intracranial course. / E) The third nerve may be affected by aneurysms of the posterior communicating artery.",
+        "correctIndex": -1,
+        "correctIndices": [
+          1,
+          3,
+          4
+        ],
+        "isMultiple": true,
+        "correctAnswerLetter": "",
+        "explanation": "A) False. The nuclei of the sixth and seventh nerves lie in the pons. B) True. The superior rectus is innervated by the contralateral nucleus. C) False. It supplies the superior oblique. D) True. This makes the sixth nerve susceptible to trauma, which may cause lateral rectus palsy. E) True. It passes lateral to the artery.",
+        "batchName": "",
+        "pageNumber": "",
+        "subjectName": "Ophthalmology",
+        "subjectId": "ophthalmology",
+        "lectureName": "Book",
+        "groupName": "Book",
+        "sourceType": "lecture"
       }
     ],
-    "totalQuestions": 19,
-    "totalLectures": 1,
+    "totalQuestions": 28,
+    "totalLectures": 2,
     "hasAiFolder": false
   }
 ]
