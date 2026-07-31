@@ -1,0 +1,161 @@
+The tear film:
+A) Is 100 µm thick
+B) Is composed of four layers
+C) The mucin layer is in contact with the cornea
+D) Is not important in the refraction of light entering the eye
+E) None of the above
+Correct Answer: C) The mucin layer is in contact with the cornea
+Explanation: The tear film is trilaminar (lipid, aqueous, mucin), with the inner mucin layer directly wetting the hydrophobic corneal epithelium — making C correct and B wrong (three layers, not four). A is wrong because the tear film average thickness is only 3 µm (ranging from 2 to 5.5 µm), not 100 µm. D is wrong because the tear-air interface is actually a major refractive surface of the eye, so the tear film is optically important, not irrelevant.
+###
+Aqueous humour is formed by:
+A) Epithelium of ciliary body
+B) Posterior surface of iris
+C) Lens
+D) Pars plana
+E) Trabecular meshwork
+Correct Answer: A) Epithelium of ciliary body
+Explanation: B and C are wrong because the iris and lens play no role in aqueous production — the iris only regulates pupil size, and the lens is purely refractive. D is a plausible-sounding distractor since the pars plana is part of the ciliary body region, but production occurs at the ciliary processes (pars plicata), not the pars plana. E is wrong because the trabecular meshwork is a drainage structure, not a secretory one.
+###
+All of the following statements about the tear film are true EXCEPT:
+A) Lysozyme and lactoferrin in the aqueous layer provide antibacterial protection
+B) The meibomian glands produce the aqueous layer of the tear film
+C) The tear film keeps the corneal surface smooth, clear, and lubricated
+D) Conjunctival goblet cells produce the inner mucin layer
+E) The mucin layer allows the aqueous layer to wet the hydrophobic corneal epithelium evenly
+Correct Answer: B) The meibomian glands produce the aqueous layer of the tear film
+Explanation: The meibomian glands, located in the tarsal plates, secrete the outer lipid layer of the tear film, not the aqueous layer — the aqueous layer (about 90% of tear thickness) comes from the main and accessory lacrimal glands, and also carries antibacterial proteins like lysozyme and lactoferrin. A, C, D, and E are all correct descriptions of tear film anatomy.
+###
+Choose the correct answer about the retina:
+A) Is 7 layers
+B) Has ganglion cells whose axons form the optic nerve
+C) Has three types of rods responsible for colour vision
+D) The neuroretina is firmly attached to the RPE
+E) The RPE delivers vitamin K for rhodopsin production
+Correct Answer: B) Has ganglion cells whose axons form the optic nerve
+Explanation: The retinal ganglion cell axons converge at the optic disc and exit the eye as the optic nerve — this is why the optic disc, lacking photoreceptors, corresponds to the physiological blind spot. A is wrong because the retina has 10 histological layers, not 7. C is wrong on two counts: colour vision is mediated by cones (not rods), and there are three types of cones (not rods). D is wrong because the neurosensory retina is only loosely apposed to the RPE (not firmly attached) — this is exactly why retinal detachment can occur. E is wrong because the RPE recycles vitamin A (not vitamin K) for the visual cycle and rhodopsin regeneration.
+###
+Most of the thickness of the cornea is formed by:
+A) Epithelial layer
+B) Substantia propria (stroma)
+C) Descemet's membrane
+D) Endothelium
+Correct Answer: B) Substantia propria (stroma)
+Explanation: The stroma (substantia propria) makes up about 90% of corneal thickness. It consists of organized collagen fibers that give the cornea its transparency and structural strength.
+###
+Cornea is supplied by nerve fibers derived from:
+A) Trochlear nerve
+B) Optic nerve
+C) Trigeminal nerve
+D) Oculomotor nerve
+Correct Answer: C) Trigeminal nerve
+Explanation: The cornea is one of the most densely innervated tissues in the body, supplied sensorially by the ophthalmic division (V1) of the trigeminal nerve — which is why corneal inflammation or ulceration is extremely painful.
+###
+Which of the following is not a source of nutrients to the cornea?
+A) Air
+B) Aqueous humour
+C) Perilimbal capillaries
+D) Vitreous humour
+Correct Answer: D) Vitreous humour
+Explanation: The cornea is avascular and is nourished by atmospheric oxygen, the aqueous humour, and the perilimbal capillary network. The vitreous humour is not a source of corneal nutrition.
+###
+All of the following are avascular EXCEPT:
+A) Cornea
+B) Sclera
+C) Vitreous
+D) Lens
+E) All of the above are vascular
+Correct Answer: B) Sclera
+Explanation: The cornea and lens are explicitly avascular, nourished only by diffusion, and the vitreous is a clear gel with no vessels of its own. The sclera is a hypovascular collagenous coat. While it has a very limited internal blood supply, it is pierced by blood vessels and intimately connected to the overlying vascularised episclera, making it the only structure listed that is not completely avascular. Note: if option E had instead read "All of the above are avascular," E would be the more correct choice, since the sclera is technically hypovascular rather than completely avascular.
+###
+All of the following are part of the uvea except:
+A) Pars plicata
+B) Pars plana
+C) Choroid
+D) Schwalbe's line
+Correct Answer: D) Schwalbe's line
+Explanation: The uvea consists of the iris, ciliary body (which has two parts: pars plicata and pars plana), and the choroid. Schwalbe's line is an anatomical landmark at the anterior chamber angle (the termination of Descemet's membrane) and is not part of the uveal tract.
+###
+The following is a part of uvea except:
+A) Bowman's membrane
+B) Iris
+C) Ciliary body
+D) Choroid
+Correct Answer: A) Bowman's membrane
+Explanation: Bowman's membrane is a layer of the cornea and has no relation to the uveal tract.
+###
+Optic disc diameter is:
+A) 1 mm
+B) 1.5 mm
+C) 2 mm
+D) 3 mm
+Correct Answer: B) 1.5 mm
+Explanation: The optic disc diameter is used as a standard unit of measurement (Disc Diameter, DD) to describe the size and location of fundus lesions.
+###
+Aqueous humour is formed by:
+A) Epithelium of ciliary body
+B) Posterior surface of iris
+C) Lens
+D) Pars plana
+Correct Answer: A) Epithelium of ciliary body
+Explanation: Aqueous humour is secreted by the non-pigmented ciliary epithelium via both active secretion and ultrafiltration.
+###
+Aqueous humor is secreted by:
+A) Circulus iridis minor
+B) Ciliary muscle
+C) Ciliary processes
+D) Iris crypts
+Correct Answer: C) Ciliary processes
+Explanation: The ciliary processes are the precise anatomical site of aqueous humour secretion within the ciliary body.
+###
+Corneal ulceration/anaesthesia is caused by injury to the ___ cranial nerve:
+A) Third
+B) Fourth
+C) Sixth
+D) Fifth
+cornea vulnerable to neurotrophic keratitis.
+Correct Answer: D) Fifth
+Explanation: Loss of corneal sensation (from trigeminal nerve injury) abolishes the protective blink reflex, leaving the cornea vulnerable to neurotrophic keratitis.
+###
+Number of layers in the neurosensory retina is:
+A) 9
+B) 10
+C) 11
+D) 12
+Correct Answer: A) 9
+Explanation: The neurosensory retina classically consists of 9 layers, from the photoreceptors to the nerve fiber layer. The retinal pigment epithelium (RPE) is anatomically and functionally a separate, tenth layer.
+###
+During accommodation for near vision, which of the following changes occurs?
+A) The ciliary muscle relaxes and the lens flattens
+B) The ciliary muscle contracts and the lens becomes thicker
+C) The zonular fibres tighten and the lens flattens
+D) The pupil dilates and the lens flattens
+E) The cornea steepens while the lens remains unchanged
+Correct Answer: B) The ciliary muscle contracts and the lens becomes thicker
+Explanation: Ciliary muscle contraction relaxes the zonular fibres, allowing the lens to become more spherical (thicker) for near focus.
+###
+Which ocular structure has no photoreceptors ?
+A) Fovea centralis
+B) Macula
+C) Optic disc
+D) Ora serrata
+E) Pars plana
+Correct Answer: C) Optic disc
+Explanation: The optic disc is where ganglion cell axons converge to exit as the optic nerve, and it contains no photoreceptors — hence the blind spot. The fovea, in contrast, has the highest photoreceptor (cone) density.
+###
+All of the following are parts of the uvea EXCEPT:
+A) Iris
+B) Ciliary body
+C) Choroid
+D) Retina
+E) None of the above — all are part of the uvea
+Correct Answer: D) Retina
+Explanation: The uveal tract comprises the iris, ciliary body, and choroid — the middle vascular coat. The retina is the inner neural coat, a separate layer of the globe wall.
+###
+Improvement of vision with a pinhole test suggests which underlying cause of reduced visual acuity?
+A) A refractive error
+B) Advanced cataract
+C) Open-angle glaucoma
+D) Macular degeneration
+E) Optic neuritis
+Correct Answer: A) A refractive error
+Explanation: A pinhole eliminates the effect of uncorrected refractive error by narrowing the bundle of light rays reaching the retina, improving focus. Vision that does not improve with a pinhole points instead toward organic pathology like dense cataract or macular/optic nerve disease.
