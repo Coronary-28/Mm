@@ -176,5 +176,35 @@
   margin-left: 12px;
   text-align: right;
   min-width: 30px;
+  }
+  .report-error-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-inline-start: 10px;
+    height: fit-content;
+    vertical-align: middle;
+    transition: background-color 0.2s ease;
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          }
+
+.report-error-btn:hover {
+    background-color: #dc2626;
+}
+
+.report-options-container {
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: 10px;
+}
+
+.report-option-btn {
+    width: 100%; 
+    text-align: center;
+}
+  }
