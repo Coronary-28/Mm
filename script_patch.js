@@ -1225,78 +1225,88 @@
     scrollQuestionIntoView(true);
   };
      const __origRenderExamForReport = typeof renderExam === 'function' ? renderExam : null;
-  renderExam = function() {
-    if (__origRenderExamForReport) __origRenderExamForReport();
-    
-    const qHeader = document.querySelector('#question-container .question-header');
-    if (!qHeader) return;
-    if (document.getElementById('report-error-btn')) return;
+renderExam = function() {
+  if (__origRenderExamForReport) __origRenderExamForReport();
+  
+  // التأكد من عدم تكرار إنشاء الزر
+  if (document.getElementById('report-error-btn')) return;
 
-    const btn = document.createElement('button');
-    btn.id = 'report-error-btn';
-    btn.className = 'report-error-btn';
-    btn.textContent = 'الإبلاغ عن خطأ !';
-    
-    btn.onclick = function(e) {
-        e.stopPropagation();
-        openReportDialog();
-    };
+  const qHeader = document.querySelector('#question-container .question-header');
+  if (!qHeader) return;
 
-    const qNum = qHeader.querySelector('.question-number');
-    if (qNum) {
-        qNum.parentNode.insertBefore(btn, qNum.nextSibling);
-    } else {
-        qHeader.appendChild(btn);
+  const btn = document.createElement('button');
+  btn.id = 'report-error-btn';
+  btn.textContent = 'الإبلاغ عن خطأ !';
+  // استخدام تنسيق مباشر لضمان ظهور الزر وعدم اختفائه بسبب ملفات الـ CSS
+  btn.style.cssText = 'background-color: #ef4444; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-inline-start: 10px; cursor: pointer; font-weight: bold; height: fit-content; display: inline-block; z-index: 999;';
+  
+  btn.onclick = function(e) {
+      e.stopPropagation();
+      openReportDialog();
+  };
+
+  const qNum = qHeader.querySelector('.question-number');
+  if (qNum) {
+      qNum.parentNode.insertBefore(btn, qNum.nextSibling);
+  } else {
+      qHeader.appendChild(btn);
+  }
+};
+
+window.openReportDialog = function() {
+  if (!state.currentExam) return;
+  
+  showDialog({
+    title: 'الإبلاغ عن خطأ',
+    message: `
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+          <button class="btn-secondary" onclick="confirmReport('نَص السؤال')">خطأ في السؤال</button>
+          <button class="btn-secondary" onclick="confirmReport('الخيارات فلا يوجد فيها جواب صحيح')">لا يوجد جواب صحيح</button>
+          <button class="btn-secondary" onclick="confirmReport('الخيارات فهناك أكثر من جواب صحيح')">يوجد أكثر من جواب صحيح</button>
+          <button class="btn-secondary" onclick="confirmReport('الـ Explanation')">خطأ في الـ Explanation</button>
+          <button class="btn-secondary" onclick="confirmReport('خطأ آخر')">خطأ آخر</button>
+      </div>
+    `,
+    showCancel: false,
+    confirmText: 'إلغاء'
+  });
+
+  setTimeout(() => {
+    const confirmBtn = document.getElementById('dialog-confirm');
+    if (confirmBtn) {
+        confirmBtn.textContent = 'إلغاء';
+        confirmBtn.className = 'btn-secondary';
+        confirmBtn.onclick = hideDialog;
     }
-  };
+  }, 0);
+};
 
-  window.openReportDialog = function() {
-    if (!state.currentExam) return;
-    const q = state.currentExam.questions[state.currentExam.currentIndex];
-    
-    let html = `
-        <div class="report-options-container">
-            <button class="btn-secondary report-option-btn" onclick="confirmReport('خطأ في السؤال', '${q.id}')">خطأ في السؤال</button>
-            <button class="btn-secondary report-option-btn" onclick="confirmReport('لا يوجد جواب صحيح', '${q.id}')">لا يوجد جواب صحيح</button>
-            <button class="btn-secondary report-option-btn" onclick="confirmReport('يوجد أكثر من جواب صحيح', '${q.id}')">يوجد أكثر من جواب صحيح</button>
-            <button class="btn-secondary report-option-btn" onclick="confirmReport('خطأ في الـ Explanation', '${q.id}')">خطأ في الـ Explanation</button>
-            <button class="btn-secondary report-option-btn" onclick="confirmReport('خطأ آخر', '${q.id}')">خطأ آخر</button>
-        </div>
-    `;
-
-    showDialog({
-        title: 'خيارات الإبلاغ',
-        message: html,
-        showCancel: true,
-        cancelText: 'إلغاء',
-        confirmText: ''
-    });
-
-    setTimeout(() => {
-        const confirmBtn = document.getElementById('dialog-confirm');
-        if (confirmBtn) confirmBtn.style.display = 'none';
-    }, 0);
-  };
-
-  window.confirmReport = function(reasonStr, qId) {
+window.confirmReport = function(reasonText) {
     hideDialog();
-    setTimeout(() => {
-        showDialog({
-            title: 'تأكيد الإبلاغ',
-            message: 'هل أنت متأكد من رغبتك بالإبلاغ عن هذا السؤال ؟',
-            showCancel: true,
-            confirmText: 'نعم',
-            cancelText: 'إلغاء',
-            onConfirm: () => {
-                sendReportToTelegram(reasonStr, qId);
-            }
-        });
-        setTimeout(() => {
-            const confirmBtn = document.getElementById('dialog-confirm');
-            if (confirmBtn) confirmBtn.style.display = 'inline-block';
-        }, 0);
-    }, 100);
-  };
+    showDialog({
+      title: 'تأكيد الإبلاغ',
+      message: 'هل أنت متأكد من رغبتك بالإبلاغ عن هذا السؤال ؟',
+      showCancel: true,
+      confirmText: 'نعم',
+      cancelText: 'إلغاء',
+      onConfirm: () => {
+          if (!state.currentExam) return;
+          const q = state.currentExam.questions[state.currentExam.currentIndex];
+          
+          const subjectName = q.subjectName || 'غير معروف';
+          const lectureName = q.lectureName || 'غير معروف';
+          const optionsText = q.originalOptions ? q.originalOptions.map((opt, i) => `${String.fromCharCode(65+i)}) ${opt}`).join('\n') : '';
+          const correctAnswer = q.correctAnswer || '';
+          const explanation = q.explanation || '';
+          
+          const msg = `السلام عليكم\nأنا الآن أقوم بحل امتحان في مادة "${subjectName}" وواجهت سؤالاً من محاضرة "${lectureName}" وأظن أن هناك خطأ في "${reasonText}"، وهذا هو السؤال:\n\n${q.text}\n\n${optionsText}\n\nالجواب الصحيح:\n${correctAnswer}\n\nالتوضيح:\n${explanation}`;
+          
+          const encodedMsg = encodeURIComponent(msg);
+          window.open('https://t.me/gwjwjsid?text=' + encodedMsg, '_blank');
+          hideDialog();
+      }
+    });
+};
 
   window.sendReportToTelegram = function(reasonStr, qId) {
     if (!state.currentExam) return;
@@ -1327,7 +1337,7 @@ ${qContent}
 " .
 أرجو التأكد من ذلك ، وجزاكم الله خيرًا .`;
 
-    const telegramUrl = 'https://t.me/+83WV3IVs0IswMGJk?text=' + encodeURIComponent(message);
+    const telegramUrl = 'https://t.me/gwjwjsid?text=' + encodeURIComponent(message);
     window.open(telegramUrl, '_blank');
   };
     showAnswer = function(){
