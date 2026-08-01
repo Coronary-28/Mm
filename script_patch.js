@@ -1,4 +1,4 @@
-/* PATCH V5: keeps previous patch features and aligns with the requested 14 changes only */
+/* PATCH V5: keeps previous patch features and aligns with requested changes including error reporting */
 (function(){
   'use strict';
 
@@ -903,68 +903,64 @@
   };
 
   window.selectOption = function(index) {
-  if (!state.currentExam) return;
-  const idx = state.currentExam.currentIndex;
-  const q = state.currentExam.questions[idx];
+    if (!state.currentExam) return;
+    const idx = state.currentExam.currentIndex;
+    const q = state.currentExam.questions[idx];
 
-  if (state.currentExam.mode === 'training' && state.currentExam.showAnswer) return;
+    if (state.currentExam.mode === 'training' && state.currentExam.showAnswer) return;
 
-  if (q.isMultiple) {
-    if (!Array.isArray(state.currentExam.answers[idx])) {
-      state.currentExam.answers[idx] = [];
-    }
-    const currentAns = state.currentExam.answers[idx];
-    const pos = currentAns.indexOf(index);
-    if (pos !== -1) {
-      currentAns.splice(pos, 1);
+    if (q.isMultiple) {
+      if (!Array.isArray(state.currentExam.answers[idx])) {
+        state.currentExam.answers[idx] = [];
+      }
+      const currentAns = state.currentExam.answers[idx];
+      const pos = currentAns.indexOf(index);
+      if (pos !== -1) {
+        currentAns.splice(pos, 1);
+      } else {
+        currentAns.push(index);
+      }
+      if (currentAns.length === 0) {
+        state.currentExam.answers[idx] = null;
+      }
     } else {
-      currentAns.push(index);
+      state.currentExam.answers[idx] = index;
     }
-    if (currentAns.length === 0) {
-      state.currentExam.answers[idx] = null;
-    }
-  } else {
-    state.currentExam.answers[idx] = index;
-  }
 
-  if (state.currentExam.mode !== 'training' || !q.isMultiple) {
-    if (state.currentExam.firstAnswers[idx] === null) {
+    if (state.currentExam.mode !== 'training' || !q.isMultiple) {
+      if (state.currentExam.firstAnswers[idx] === null) {
+        const ans = state.currentExam.answers[idx];
+        state.currentExam.firstAnswers[idx] = Array.isArray(ans) ? [...ans] : ans;
+      }
+    }
+
+    if (state.currentExam.mode === 'training') {
       const ans = state.currentExam.answers[idx];
-      state.currentExam.firstAnswers[idx] = Array.isArray(ans) ? [...ans] : ans;
-    }
-  }
-
-  // تشغيل الصوت والأنيميشن في وضع التدريب
-  if (state.currentExam.mode === 'training') {
-    const ans = state.currentExam.answers[idx];
-    const isCorrect = window.isAnswerCorrect ? window.isAnswerCorrect(q, ans) : false;
-    if (ans !== null && isCorrect) {
-      // إجابة صحيحة: صوت و أنيميشن
-      if (typeof window.playRightSound === 'function') {
-        window.playRightSound();
-      }
-      if (typeof window.triggerTrainingAnimation === 'function') {
-        window.triggerTrainingAnimation();
-      }
-      // إظهار الإجابة الصحيحة تلقائياً
-      state.currentExam.showAnswer = true;
-    } else if (ans !== null && !isCorrect) {
-      // إجابة خاطئة: صوت خطأ
-      if (typeof window.playWrongSound === 'function') {
-        window.playWrongSound();
-      }
-      if (!state.wrongQuestions.includes(q.id)) {
-        state.wrongQuestions.push(q.id);
-        saveWrongQuestions();
+      const isCorrect = window.isAnswerCorrect ? window.isAnswerCorrect(q, ans) : false;
+      if (ans !== null && isCorrect) {
+        if (typeof window.playRightSound === 'function') {
+          window.playRightSound();
+        }
+        if (typeof window.triggerTrainingAnimation === 'function') {
+          window.triggerTrainingAnimation();
+        }
+        state.currentExam.showAnswer = true;
+      } else if (ans !== null && !isCorrect) {
+        if (typeof window.playWrongSound === 'function') {
+          window.playWrongSound();
+        }
+        if (!state.wrongQuestions.includes(q.id)) {
+          state.wrongQuestions.push(q.id);
+          saveWrongQuestions();
+        }
       }
     }
-  }
 
-  saveExamState();
-  renderExam();
-};
+    saveExamState();
+    renderExam();
+  };
 
-    window.submitMultipleAnswer = function() {
+  window.submitMultipleAnswer = function() {
     if (!state.currentExam) return;
     const idx = state.currentExam.currentIndex;
     const q = state.currentExam.questions[idx];
@@ -975,15 +971,16 @@
       state.currentExam.firstAnswers[idx] = savedAns;
     }
     if (window.isAnswerCorrect(q, ans)) {
-      state.currentExam.showAnswer = true;
-      if (state.currentExam.mode === 'training') {
-        playRightSound();
-        triggerTrainingAnimation();
+      if (typeof window.playRightSound === 'function') {
+        window.playRightSound();
       }
+      if (typeof window.triggerTrainingAnimation === 'function') {
+        window.triggerTrainingAnimation();
+      }
+      state.currentExam.showAnswer = true;
     } else {
-      state.currentExam.showAnswer = false;
-      if (state.currentExam.mode === 'training') {
-        playWrongSound();
+      if (typeof window.playWrongSound === 'function') {
+        window.playWrongSound();
       }
       if (!state.wrongQuestions.includes(q.id)) {
         state.wrongQuestions.push(q.id);
@@ -994,6 +991,105 @@
     renderExam();
   };
 
+  window.reportQuestionError = function(qId) {
+    if (!state.currentExam || !state.currentExam.questions) return;
+    const q = state.currentExam.questions.find(item => item.id === qId);
+    if (!q) return;
+
+    removeDialogExtras();
+    showDialog({
+      title: 'الإبلاغ عن خطأ',
+      message: `
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <p style="margin:0 0 8px 0; font-weight:bold;">اختر نوع الخطأ:</p>
+          <button class="btn-secondary" style="text-align:right; width:100%;" onclick="confirmReportReason('${qId}', 'خطأ في السؤال')">خطأ في السؤال</button>
+          <button class="btn-secondary" style="text-align:right; width:100%;" onclick="confirmReportReason('${qId}', 'لا يوجد جواب صحيح')">لا يوجد جواب صحيح</button>
+          <button class="btn-secondary" style="text-align:right; width:100%;" onclick="confirmReportReason('${qId}', 'يوجد أكثر من جواب صحيح')">يوجد أكثر من جواب صحيح</button>
+          <button class="btn-secondary" style="text-align:right; width:100%;" onclick="confirmReportReason('${qId}', 'خطأ في الـ Explanation')">خطأ في الـ Explanation</button>
+          <button class="btn-secondary" style="text-align:right; width:100%;" onclick="confirmReportReason('${qId}', 'خطأ آخر')">خطأ آخر</button>
+        </div>
+      `,
+      showCancel: true,
+      confirmText: '',
+      cancelText: 'إلغاء',
+      onConfirm: () => {},
+      onCancel: () => {}
+    });
+    setTimeout(() => {
+      const confirmBtn = document.getElementById('dialog-confirm');
+      if (confirmBtn) confirmBtn.style.display = 'none';
+    }, 0);
+  };
+
+  window.confirmReportReason = function(qId, reason) {
+    hideDialog();
+    removeDialogExtras();
+    showDialog({
+      title: 'تأكيد الإبلاغ',
+      message: 'هل أنت متأكد من رغبتك بالإبلاغ عن هذا السؤال ؟',
+      showCancel: true,
+      confirmText: 'نعم',
+      cancelText: 'إلغاء',
+      onConfirm: () => {
+        sendReportToTelegram(qId, reason);
+      },
+      onCancel: () => {}
+    });
+  };
+
+  window.sendReportToTelegram = function(qId, reason) {
+    const q = state.currentExam.questions.find(item => item.id === qId);
+    if (!q) return;
+
+    const subjectName = q.subjectName || state.currentSubject?.name || 'مادة غير معروفة';
+    const lectureName = q.lectureName || q.groupName || 'محاضرة غير معروفة';
+
+    let errorContext = '';
+    if (reason === 'خطأ في السؤال') {
+      errorContext = q.text;
+    } else if (reason === 'لا يوجد جواب صحيح') {
+      errorContext = 'الخيارات فلا يوجد فيها جواب صحيح (الخيارات: ' + (q.options ? q.options.join(' - ') : '') + ')';
+    } else if (reason === 'يوجد أكثر من جواب صحيح') {
+      errorContext = 'الخيارات فهناك أكثر من جواب صحيح (الخيارات: ' + (q.options ? q.options.join(' - ') : '') + ')';
+    } else if (reason === 'خطأ في الـ Explanation') {
+      errorContext = q.explanation || 'لا يوجد شرح';
+    } else {
+      errorContext = '(   )';
+    }
+
+    const questionFullText = `نص السؤال: ${q.text}\nالخيارات: ${q.options ? q.options.join(' | ') : ''}\nالجواب الصحيح: ${q.correctAnswerText || q.correctAnswer || ''}\nالتوضيح: ${q.explanation || ''}`;
+
+    const message = `السلام عليكم\nأنا الان أقوم بحل امتحان في مادة "${subjectName}" وواجهت سؤال من محاضرة "${lectureName}" وأظن أن هناك خطأ في ${reason} = ${errorContext}\n، وهذا هو السؤال :\n"${questionFullText}"`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const telegramUrl = `https://t.me/gwjwjsid?text=${encodedMessage}`;
+    window.open(telegramUrl, '_blank');
+  };
+
+  const errorReportObserver = new MutationObserver(() => {
+    const questionContainer = document.getElementById('question-container');
+    if (questionContainer) {
+      const qTitle = questionContainer.querySelector('h3, .question-title, h4, .question-number');
+      if (qTitle && !qTitle.querySelector('.error-report-btn')) {
+        const idx = state && state.currentExam ? state.currentExam.currentIndex : 0;
+        const q = state && state.currentExam && state.currentExam.questions ? state.currentExam.questions[idx] : null;
+        if (q) {
+          const btn = document.createElement('button');
+          btn.className = 'error-report-btn';
+          btn.style.cssText = 'background-color: #ef4444; color: #ffffff; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; border: none; cursor: pointer; margin-right: 10px; margin-left: 10px; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;';
+          btn.textContent = 'الإبلاغ عن خطأ !';
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            window.reportQuestionError(q.id);
+          };
+          qTitle.appendChild(btn);
+        }
+      }
+    }
+  });
+  errorReportObserver.observe(document.body, { childList: true, subtree: true });
+
+})();
 
   window.submitExamFinish = function() {
     if(!state.currentExam) return;
