@@ -144,6 +144,45 @@
       position: absolute;
       top: 0;
       right: 0;
+          }
+    .btn-report-error {
+      display: inline-block;
+      background-color: #dc2626;
+      color: white;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      font-weight: bold;
+      cursor: pointer;
+      margin-inline-start: 12px;
+      border: none;
+      vertical-align: middle;
+      transition: background-color 0.2s;
+    }
+    .btn-report-error:hover {
+      background-color: #b91c1c;
+    }
+    .report-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .report-option-btn {
+      padding: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: right;
+      font-family: inherit;
+      color: var(--text-color);
+      font-size: 1em;
+      transition: all 0.2s;
+    }
+    .report-option-btn:hover {
+      border-color: #dc2626;
+      background: rgba(220, 38, 38, 0.05);      
       width: 0;
       height: 0;
       border-top: 18px solid #ef4444;
@@ -372,6 +411,37 @@
   </div>
 
   <div id="toast" class="toast hidden"></div>
+    <div id="report-type-modal" class="modal-overlay hidden" onclick="if(event.target.id==='report-type-modal') closeReportModal()">
+    <div class="modal-card" style="max-width: 90%; width: 450px;">
+      <div class="panel-header modal-header">
+        <h3>الإبلاغ عن خطأ</h3>
+        <button class="btn-close" onclick="closeReportModal()">✕</button>
+      </div>
+      <div class="report-options-list">
+        <button class="report-option-btn" onclick="openReportConfirm('خطأ في السؤال')">خطأ في السؤال</button>
+        <button class="report-option-btn" onclick="openReportConfirm('لا يوجد جواب صحيح')">لا يوجد جواب صحيح</button>
+        <button class="report-option-btn" onclick="openReportConfirm('يوجد أكثر من جواب صحيح')">يوجد أكثر من جواب صحيح</button>
+        <button class="report-option-btn" onclick="openReportConfirm('خطأ في الـ Explanation')">خطأ في الـ Explanation</button>
+        <button class="report-option-btn" onclick="openReportConfirm('خطأ آخر')">خطأ آخر</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="report-confirm-modal" class="modal-overlay hidden" onclick="if(event.target.id==='report-confirm-modal') closeReportConfirmModal()">
+    <div class="modal-card" style="max-width: 90%; width: 400px;">
+      <div class="panel-header modal-header">
+        <h3>تأكيد الإبلاغ</h3>
+        <button class="btn-close" onclick="closeReportConfirmModal()">✕</button>
+      </div>
+      <div style="margin: 25px 0; font-size: 1.1em; text-align: center; font-weight: bold;">
+        هل أنت متأكد من رغبتك بالإبلاغ عن هذا السؤال ؟
+      </div>
+      <div class="dialog-actions">
+        <button class="btn-secondary" onclick="closeReportConfirmModal()">إلغاء</button>
+        <button class="btn-primary" style="background-color: #dc2626;" onclick="executeReport()">نعم</button>
+      </div>
+    </div>
+  </div>
   <canvas id="fireworks-canvas" class="fireworks-canvas hidden"></canvas>
   <audio id="bg-audio" preload="auto" loop></audio>
     <audio id="right-audio" src="right.mp3" preload="auto"></audio>
@@ -515,6 +585,26 @@
             const questionHeaders = reviewContainer.querySelectorAll('h4');
             questionHeaders.forEach((header, index) => {
                 if (!header.hasAttribute('data-flag-checked')) {
+                        const qHeaders = document.querySelectorAll('.question-header');
+        qHeaders.forEach((header) => {
+            if (!header.querySelector('.btn-report-error')) {
+                const numSpan = header.querySelector('.question-number');
+                let qId = null;
+                const favBtn = header.querySelector('.favorite-heart-btn');
+                if (favBtn) {
+                    qId = favBtn.getAttribute('data-question-id');
+                } else if (state && state.currentExam && state.currentExam.questions && state.currentExam.questions[state.currentExam.currentIndex]) {
+                    qId = state.currentExam.questions[state.currentExam.currentIndex].id;
+                }
+                if (qId && numSpan) {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-report-error';
+                    btn.textContent = 'الإبلاغ عن خطأ !';
+                    btn.onclick = function(e) { e.stopPropagation(); openReportModal(qId); };
+                    numSpan.insertAdjacentElement('afterend', btn);
+                }
+            }
+        });
                     header.setAttribute('data-flag-checked', 'true');
                     const q = state.currentExam.questions[index];
                     if (q && state.currentExam.flagged[q.id]) {
