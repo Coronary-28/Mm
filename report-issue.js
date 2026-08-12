@@ -186,6 +186,14 @@
         optionsContainer.appendChild(btn);
     });
 
+    // دالة لتنظيف النص من أي أكواد HTML إن وجدت لتجنب المشاكل في تيليجرام
+    function getCleanText(rawText) {
+        if (!rawText) return "";
+        const temp = document.createElement('div');
+        temp.innerHTML = rawText;
+        return temp.textContent || temp.innerText || "";
+    }
+
     document.getElementById('ri-confirm-yes').onclick = () => {
         if (!currentReportedQuestion) return;
 
@@ -198,29 +206,65 @@
             case "خطأ آخر": errorDetailsPhrase = "(   )"; break;
         }
 
-        let subjectName = (typeof state !== 'undefined' && state.currentExam && state.currentExam.folderName) ? state.currentExam.folderName : "غير محدد";
-        let lectureName = (typeof state !== 'undefined' && state.currentExam && state.currentExam.txtFileName) ? state.currentExam.txtFileName : (currentReportedQuestion.source || "غير محدد");
-
-        let optionsText = "";
-        if (currentReportedQuestion.options && Array.isArray(currentReportedQuestion.options)) {
-            optionsText = currentReportedQuestion.options.map(opt => `\n- ${opt}`).join('');
+        // استخراج اسم المادة (البحث في عدة أماكن محتملة)
+        let subjectName = "غير محدد";
+        if (typeof state !== 'undefined') {
+            subjectName = (state.currentExam && state.currentExam.folderName) || 
+                          state.folderName || 
+                          currentReportedQuestion.folderName || 
+                          currentReportedQuestion.folder || 
+                          currentReportedQuestion.subject || 
+                          "غير محدد";
         }
 
+        // استخراج اسم المحاضرة (البحث في عدة أماكن محتملة)
+        let lectureName = "غير محدد";
+        if (typeof state !== 'undefined') {
+            lectureName = (state.currentExam && state.currentExam.txtFileName) || 
+                          state.txtFileName || 
+                          currentReportedQuestion.txtFileName || 
+                          currentReportedQuestion.fileName || 
+                          currentReportedQuestion.file || 
+                          currentReportedQuestion.source || 
+                          "غير محدد";
+        }
+
+        // استخراج نص السؤال
+        let rawQuestionText = currentReportedQuestion.question || 
+                              currentReportedQuestion.text || 
+                              currentReportedQuestion.qText || 
+                              currentReportedQuestion.content || 
+                              "غير متوفر";
+        let finalQuestionText = getCleanText(rawQuestionText);
+
+        // استخراج الخيارات
+        let optionsText = "";
+        if (currentReportedQuestion.options && Array.isArray(currentReportedQuestion.options)) {
+            optionsText = currentReportedQuestion.options.map(opt => `\n- ${getCleanText(opt)}`).join('');
+        }
+
+        // استخراج الجواب الصحيح
+        let finalCorrectAnswer = getCleanText(currentReportedQuestion.correctAnswer) || "غير متوفر";
+        
+        // استخراج التوضيح
+        let finalExplanation = getCleanText(currentReportedQuestion.explanation) || "لا يوجد توضيح";
+
+        // بناء النص النهائي تماماً كما طلبت
         const telegramText = `السلام عليكم
-أنا الان أقوم بحل امتحان في مادة "${subjectName}" وواجهت سؤال من محاضرة "${lectureName}" وأظن أن هناك خطأ في "${errorDetailsPhrase}"
+أنا الان أقوم بحل امتحان في مادة "${subjectName}" وواجهت سؤال من محاضرة "${lectureName}" وأظن أن هناك خطأ في "${errorDetailsPhrase}" ، وهذا هو السؤال :
 
-، وهذا هو السؤال :
-
-نص السؤال :
-${currentReportedQuestion.question || "غير متوفر"}
+نَص السؤال :
+${finalQuestionText}
 
 الخيارات :${optionsText}
 
 الجواب الصحيح :
-${currentReportedQuestion.correctAnswer || "غير متوفر"}
+${finalCorrectAnswer}
 
 التوضيح :
-${currentReportedQuestion.explanation || "لا يوجد توضيح"}`;
+${finalExplanation}
+
+أرجو التأكد من ذلك ، وجزاكم الله خيرًا .`;
 
         navigator.clipboard.writeText(telegramText).then(() => {
             document.getElementById('ri-confirm-modal').classList.remove('active');
@@ -238,16 +282,12 @@ ${currentReportedQuestion.explanation || "لا يوجد توضيح"}`;
     // 4. مراقب الحقن الذكي (يعتمد على زر المفضلة)
     // ==========================================
     function injectReportButtons() {
-        // نبحث عن كل أزرار المفضلة في الصفحة لأنها تظهر دائماً مع السؤال
         const favBtns = document.querySelectorAll('button[onclick*="toggleFavorite"]');
         
         favBtns.forEach(favBtn => {
             const parentContainer = favBtn.parentNode;
             
-            // إذا لم نضف زر الإبلاغ في هذه الحاوية من قبل
             if (parentContainer && !parentContainer.querySelector('.report-issue-btn')) {
-                
-                // استخراج ID السؤال من وظيفة المفضلة: toggleFavorite('qId')
                 const match = favBtn.getAttribute('onclick').match(/'([^']+)'/);
                 
                 if (match) {
@@ -260,40 +300,34 @@ ${currentReportedQuestion.explanation || "لا يوجد توضيح"}`;
                     
                     reportBtn.onclick = (e) => {
                         e.preventDefault();
-                        e.stopPropagation(); // منع تفعيل أزرار أخرى
+                        e.stopPropagation(); 
                         
-                        // محاولة إيجاد السؤال بناءً على الـ ID المستخرج
                         currentReportedQuestion = null;
                         if (typeof state !== 'undefined') {
-                            // البحث في أسئلة الامتحان الحالي
                             if (state.currentExam && state.currentExam.questions) {
                                 currentReportedQuestion = state.currentExam.questions.find(q => q.id === qId);
                             }
-                            // البحث في كل الأسئلة (في حال كنا في وضع البحث)
                             if (!currentReportedQuestion && state.allQuestions) {
                                 currentReportedQuestion = state.allQuestions.find(q => q.id === qId);
                             }
                         }
                         
-                        // في حال لم يتم العثور على بيانات السؤال (حالة نادرة)
                         if (!currentReportedQuestion) {
                             currentReportedQuestion = { 
                                 id: qId, 
-                                question: "لم يتمكن النظام من جلب نص السؤال تلقائياً. (رقم السؤال: " + qId + ")" 
+                                text: "لم يتمكن النظام من جلب نص السؤال تلقائياً. (رقم السؤال: " + qId + ")" 
                             };
                         }
                         
                         document.getElementById('ri-options-modal').classList.add('active');
                     };
 
-                    // إدراج زر الإبلاغ بجانب زر المفضلة مباشرة
                     parentContainer.appendChild(reportBtn);
                 }
             }
         });
     }
 
-    // مراقبة أي تغيير في الصفحة (مثل تحميل أسئلة جديدة أو فتح البحث)
     const observer = new MutationObserver(() => {
         injectReportButtons();
     });
