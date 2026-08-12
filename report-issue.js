@@ -5,29 +5,30 @@
     // 1. حقن أكواد التصميم (CSS) ديناميكياً
     // ==========================================
     const style = document.createElement('style');
-    style.textContent = 
-        /* زر الإبلاغ عن خطأ بجانب رقم السؤال */
+    style.textContent = `
+        /* زر الإبلاغ عن خطأ بجانب الأزرار الأخرى */
         .report-issue-btn {
             display: inline-block;
             background-color: #dc2626 !important; /* لون أحمر */
             color: #ffffff !important;
-            padding: 3px 8px;
-            margin: 0 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            padding: 4px 10px;
+            margin: 0 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
             font-weight: bold;
             cursor: pointer;
             border: none;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: background 0.2s, transform 0.1s;
             vertical-align: middle;
+            font-family: inherit;
         }
         .report-issue-btn:hover {
             background-color: #b91c1c !important;
             transform: scale(1.05);
         }
         
-        /* تنسيقات النوافذ المنبثقة وثبات الألوان (أبيض وأسود) */
+        /* تنسيقات النوافذ المنبثقة وثبات الألوان */
         .ri-modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -113,27 +114,23 @@
             text-align: center;
             margin-bottom: 15px;
         }
-    ;
+    `;
     document.head.appendChild(style);
 
-// ==========================================
+    // ==========================================
     // 2. بناء هياكل النوافذ المنبثقة
     // ==========================================
-    const modalsHTML = 
-        <!-- نافذة اختيار نوع الخطأ -->
+    const modalsHTML = `
         <div class="ri-modal-overlay" id="ri-options-modal">
             <div class="ri-modal-card">
                 <div class="ri-modal-header">
                     <span>سبب الإبلاغ</span>
                     <button class="ri-close-btn" onclick="document.getElementById('ri-options-modal').classList.remove('active')">✕</button>
                 </div>
-                <div id="ri-options-container">
-                    <!-- سيتم إضافة الأزرار برمجياً -->
-                </div>
+                <div id="ri-options-container"></div>
             </div>
         </div>
 
-        <!-- نافذة التأكيد -->
         <div class="ri-modal-overlay" id="ri-confirm-modal">
             <div class="ri-modal-card">
                 <div class="ri-modal-header">تأكيد الإبلاغ</div>
@@ -145,7 +142,6 @@
             </div>
         </div>
 
-        <!-- نافذة التعليمات والانتقال لتيليجرام -->
         <div class="ri-modal-overlay" id="ri-success-modal">
             <div class="ri-modal-card">
                 <div class="ri-modal-header">تم النسخ بنجاح</div>
@@ -158,7 +154,7 @@
                 </div>
             </div>
         </div>
-    ;
+    `;
     const modalsContainer = document.createElement('div');
     modalsContainer.innerHTML = modalsHTML;
     document.body.appendChild(modalsContainer);
@@ -177,7 +173,6 @@
         "خطأ آخر"
     ];
 
-    // تعبئة نافذة الخيارات
     const optionsContainer = document.getElementById('ri-options-container');
     errorOptions.forEach(opt => {
         const btn = document.createElement('button');
@@ -191,32 +186,27 @@
         optionsContainer.appendChild(btn);
     });
 
-    // دالة إنشاء نص التيليجرام ونسخه
     document.getElementById('ri-confirm-yes').onclick = () => {
         if (!currentReportedQuestion) return;
 
-        // تحديد الجملة بناءً على اختيار المستخدم
         let errorDetailsPhrase = "";
         switch (selectedErrorType) {
             case "خطأ في السؤال": errorDetailsPhrase = "نَص السؤال"; break;
             case "لا يوجد جواب صحيح": errorDetailsPhrase = "الخيارات فلا يوجد فيها جواب صحيح"; break;
             case "يوجد أكثر من جواب صحيح": errorDetailsPhrase = "الخيارات فهناك أكثر من جواب صحيح"; break;
             case "خطأ في الـ Explanation": errorDetailsPhrase = "الـ Explanation"; break;
-            case "خطأ آخر": errorDetailsPhrase = "(   )"; break; // يترك فارغاً ليكتبه الطالب
+            case "خطأ آخر": errorDetailsPhrase = "(   )"; break;
         }
 
-// محاولة استخراج اسم المادة والمحاضرة من الـ State (إن لم تكن متوفرة سيضع قيمة افتراضية)
         let subjectName = (typeof state !== 'undefined' && state.currentExam && state.currentExam.folderName) ? state.currentExam.folderName : "غير محدد";
-        let lectureName = (typeof state !== 'undefined' && state.currentExam && state.currentExam.txtFileName) ? state.currentExam.txtFileName : currentReportedQuestion.source || "غير محدد";
+        let lectureName = (typeof state !== 'undefined' && state.currentExam && state.currentExam.txtFileName) ? state.currentExam.txtFileName : (currentReportedQuestion.source || "غير محدد");
 
-        // تنسيق الخيارات كنص
         let optionsText = "";
         if (currentReportedQuestion.options && Array.isArray(currentReportedQuestion.options)) {
-            optionsText = currentReportedQuestion.options.map((opt, i) => \n- ${opt}).join('');
+            optionsText = currentReportedQuestion.options.map(opt => `\n- ${opt}`).join('');
         }
 
-        // بناء النص النهائي
-        const telegramText = السلام عليكم
+        const telegramText = `السلام عليكم
 أنا الان أقوم بحل امتحان في مادة "${subjectName}" وواجهت سؤال من محاضرة "${lectureName}" وأظن أن هناك خطأ في "${errorDetailsPhrase}"
 
 ، وهذا هو السؤال :
@@ -230,9 +220,8 @@ ${currentReportedQuestion.question || "غير متوفر"}
 ${currentReportedQuestion.correctAnswer || "غير متوفر"}
 
 التوضيح :
-${currentReportedQuestion.explanation || "لا يوجد توضيح"};
+${currentReportedQuestion.explanation || "لا يوجد توضيح"}`;
 
-        // نسخ النص للحافظة
         navigator.clipboard.writeText(telegramText).then(() => {
             document.getElementById('ri-confirm-modal').classList.remove('active');
             document.getElementById('ri-success-modal').classList.add('active');
@@ -241,56 +230,77 @@ ${currentReportedQuestion.explanation || "لا يوجد توضيح"};
         });
     };
 
-    // إغلاق نافذة النجاح عند الضغط على زر التيليجرام
     document.getElementById('ri-go-tg-btn').onclick = () => {
         document.getElementById('ri-success-modal').classList.remove('active');
     };
 
     // ==========================================
-    // 4. مراقب لإضافة زر الإبلاغ بجانب الأسئلة
+    // 4. مراقب الحقن الذكي (يعتمد على زر المفضلة)
     // ==========================================
     function injectReportButtons() {
-        // البحث عن الأسئلة في وضع الامتحان أو المراجعة (حسب الهيكلة المعتادة)
-        const questionHeaders = document.querySelectorAll('h3, h4');
+        // نبحث عن كل أزرار المفضلة في الصفحة لأنها تظهر دائماً مع السؤال
+        const favBtns = document.querySelectorAll('button[onclick*="toggleFavorite"]');
         
-        questionHeaders.forEach((header, index) => {
-            // التحقق من أن هذا العنصر هو ترويسة سؤال (عادة يحتوي على كلمة سؤال أو Question)
-            if (header.textContent.includes('سؤال') || header.textContent.includes('Question')) {
-                // منع التكرار
-                if (!header.querySelector('.report-issue-btn')) {
+        favBtns.forEach(favBtn => {
+            const parentContainer = favBtn.parentNode;
+            
+            // إذا لم نضف زر الإبلاغ في هذه الحاوية من قبل
+            if (parentContainer && !parentContainer.querySelector('.report-issue-btn')) {
+                
+                // استخراج ID السؤال من وظيفة المفضلة: toggleFavorite('qId')
+                const match = favBtn.getAttribute('onclick').match(/'([^']+)'/);
+                
+                if (match) {
+                    const qId = match[1];
+                    
                     const reportBtn = document.createElement('button');
                     reportBtn.className = 'report-issue-btn';
                     reportBtn.textContent = 'الإبلاغ عن خطأ !';
+                    reportBtn.title = 'الإبلاغ عن خطأ في هذا السؤال';
                     
                     reportBtn.onclick = (e) => {
-                        e.stopPropagation(); // لمنع تفعيل أي أحداث أخرى في الخلفية
-                        // سحب بيانات السؤال الحالي من state
-                        if (typeof state !== 'undefined' && state.currentExam && state.currentExam.questions) {
-                            // يفترض أن الترتيب في الواجهة يطابق الترتيب في المصفوفة
-                            currentReportedQuestion = state.currentExam.questions[index] || {};
-                        } else {
-                            currentReportedQuestion = {}; 
+                        e.preventDefault();
+                        e.stopPropagation(); // منع تفعيل أزرار أخرى
+                        
+                        // محاولة إيجاد السؤال بناءً على الـ ID المستخرج
+                        currentReportedQuestion = null;
+                        if (typeof state !== 'undefined') {
+                            // البحث في أسئلة الامتحان الحالي
+                            if (state.currentExam && state.currentExam.questions) {
+                                currentReportedQuestion = state.currentExam.questions.find(q => q.id === qId);
+                            }
+                            // البحث في كل الأسئلة (في حال كنا في وضع البحث)
+                            if (!currentReportedQuestion && state.allQuestions) {
+                                currentReportedQuestion = state.allQuestions.find(q => q.id === qId);
+                            }
+                        }
+                        
+                        // في حال لم يتم العثور على بيانات السؤال (حالة نادرة)
+                        if (!currentReportedQuestion) {
+                            currentReportedQuestion = { 
+                                id: qId, 
+                                question: "لم يتمكن النظام من جلب نص السؤال تلقائياً. (رقم السؤال: " + qId + ")" 
+                            };
                         }
                         
                         document.getElementById('ri-options-modal').classList.add('active');
                     };
 
-                    // إضافة الزر بجانب نص رقم السؤال
-                    header.appendChild(reportBtn);
+                    // إدراج زر الإبلاغ بجانب زر المفضلة مباشرة
+                    parentContainer.appendChild(reportBtn);
                 }
             }
         });
     }
 
-    // تشغيل المراقب لمراقبة أي أسئلة جديدة تظهر في الشاشة
+    // مراقبة أي تغيير في الصفحة (مثل تحميل أسئلة جديدة أو فتح البحث)
     const observer = new MutationObserver(() => {
         injectReportButtons();
     });
     
-    // بدء المراقبة عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', () => {
         observer.observe(document.body, { childList: true, subtree: true });
-        injectReportButtons(); // محاولة الحقن الأولي
+        injectReportButtons();
     });
 
 })();
