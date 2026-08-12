@@ -160,10 +160,6 @@
     // ==========================================
     let currentReportedQuestion = null;
     let selectedErrorType = "";
-    
-    // متغيرات لتخزين المادة والمحاضرة من زر الموقع
-    let extractedSubject = "غير محدد";
-    let extractedLecture = "غير محدد";
 
     const errorOptions = [
         "خطأ في السؤال",
@@ -186,11 +182,15 @@
         optionsContainer.appendChild(btn);
     });
 
+    // دالة متطورة لتنظيف النص مع الحفاظ على الأسطر الجديدة للأسئلة الطويلة
     function getCleanText(rawText) {
         if (!rawText) return "";
+        let text = rawText.replace(/<br\s*[\/]?>/gi, "\n");
+        text = text.replace(/<\/p>/gi, "\n");
+        text = text.replace(/<\/div>/gi, "\n");
         const temp = document.createElement('div');
-        temp.innerHTML = rawText;
-        return temp.textContent || temp.innerText || "";
+        temp.innerHTML = text;
+        return (temp.textContent || temp.innerText || "").trim();
     }
 
     document.getElementById('ri-confirm-yes').onclick = () => {
@@ -205,9 +205,8 @@
             case "خطأ آخر": errorDetailsPhrase = "(   )"; break;
         }
 
-        // استخدام القيم المستخرجة من زر الموقع
-        let finalSubjectName = extractedSubject;
-        let finalLectureName = extractedLecture;
+        let finalSubjectName = currentReportedQuestion._extractedSubject || "غير محدد";
+        let finalLectureName = currentReportedQuestion._extractedLecture || "غير محدد";
 
         let rawQuestionText = currentReportedQuestion.question || 
                               currentReportedQuestion.text || 
@@ -224,7 +223,6 @@
         let finalCorrectAnswer = getCleanText(currentReportedQuestion.correctAnswer) || "غير متوفر";
         let finalExplanation = getCleanText(currentReportedQuestion.explanation) || "لا يوجد توضيح";
 
-        // بناء النص مطابقاً تماماً لطلبك
         const telegramText = `السلام عليكم
 أنا الان أقوم بحل امتحان في مادة "${finalSubjectName}" وواجهت سؤال من محاضرة "${finalLectureName}" وأظن أن هناك خطأ في "${errorDetailsPhrase}" ، وهذا هو السؤال :
 نَص السؤال :
@@ -276,28 +274,9 @@ ${finalExplanation}
                         e.preventDefault();
                         e.stopPropagation(); 
                         
-                        // إعادة تهيئة المتغيرات
-                        extractedSubject = "غير محدد";
-                        extractedLecture = "غير محدد";
                         currentReportedQuestion = null;
 
-                        // 1. محاولة استخراج المادة والمحاضرة من زر الموقع المجاور
-                        const siblingButtons = parentContainer.querySelectorAll('button');
-                        siblingButtons.forEach(btn => {
-                            const onclickText = btn.getAttribute('onclick');
-                            // البحث عن أي زر لا يخص المفضلة أو العلم، ويحتوي على نصوص بين علامات تنصيص
-                            if (onclickText && !onclickText.includes('toggleFavorite') && !onclickText.includes('toggleFlag')) {
-                                // استخراج جميع النصوص الموجودة بين علامات التنصيص (المفردة أو المزدوجة)
-                                const matches = [...onclickText.matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]);
-                                // بناءً على ترتيب زر الموقع: [المادة، المحاضرة، الدفعة، الصفحة]
-                                if (matches.length >= 2) {
-                                    extractedSubject = matches[0];
-                                    extractedLecture = matches[1];
-                                }
-                            }
-                        });
-
-                        // 2. سحب بيانات السؤال 
+                        // سحب بيانات السؤال الأساسية
                         if (typeof state !== 'undefined') {
                             if (state.currentExam && state.currentExam.questions) {
                                 currentReportedQuestion = state.currentExam.questions.find(q => q.id === qId);
@@ -308,12 +287,57 @@ ${finalExplanation}
                         }
                         
                         if (!currentReportedQuestion) {
-                            currentReportedQuestion = { 
-                                id: qId, 
-                                text: "لم يتمكن النظام من جلب نص السؤال تلقائياً. (رقم السؤال: " + qId + ")" 
-                            };
+                            currentReportedQuestion = { id: qId };
                         }
+
+                        // ==========================================
+                        // الماسح الذكي للبحث عن زر الموقع في كامل المربع
+                        // ==========================================
+                        currentReportedQuestion._extractedSubject = "غير محدد";
+                        currentReportedQuestion._extractedLecture = "غير محدد";
                         
+                        let currentSearchElement = favBtn.parentElement;
+                        let foundLocationBtn = false;
+                        
+                        // نرجع للخلف في هيكل الـ HTML (حتى 7 مستويات) لنغطي كامل مربع السؤال
+                        for (let i = 0; i < 7; i++) {
+                            if (!currentSearchElement || currentSearchElement === document.body) break;
+                            
+                            // نجلب كل الأزرار داخل هذا المستوى
+                            const allBtnsInContainer = currentSearchElement.querySelectorAll('button');
+                            
+                            for (let btn of allBtnsInContainer) {
+                                const onclickText = btn.getAttribute('onclick') || "";
+                                
+                                // نتأكد أن الزر ليس زر مفضلة أو علم أو زر الإبلاغ نفسه
+                                if (onclickText && !onclickText.includes('toggleFavorite') && !onclickText.includes('toggleFlag') && !onclickText.includes('الإبلاغ')) {
+                                    
+                                    // نستخرج جميع النصوص الموجودة بين علامتي تنصيص
+                                    const matches = [...onclickText.matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]);
+                                    
+                                    // نتجاهل الـ ID وأي نصوص فارغة
+                                    const validMatches = matches.filter(m => m !== qId && m.trim().length > 1);
+                                    
+                                    // إذا وجدنا نصين على الأقل، فهما بالتأكيد المادة والمحاضرة
+                                    if (validMatches.length >= 2) {
+                                        currentReportedQuestion._extractedSubject = validMatches[0].trim();
+                                        currentReportedQuestion._extractedLecture = validMatches[1].trim();
+                                        foundLocationBtn = true;
+                                        break; // نوقف البحث في الأزرار
+                                    }
+                                }
+                            }
+                            if (foundLocationBtn) break; // نوقف البحث في المستويات إذا وجدنا المطلوب
+                            
+                            currentSearchElement = currentSearchElement.parentElement; // ننتقل للمستوى الأعلى
+                        }
+
+                        // في حال فشل الماسح (نادرة)، نلجأ كحل أخير لبيانات السؤال الخفية
+                        if (!foundLocationBtn) {
+                            currentReportedQuestion._extractedSubject = currentReportedQuestion.folderName || currentReportedQuestion.subject || currentReportedQuestion.course || "غير محدد";
+                            currentReportedQuestion._extractedLecture = currentReportedQuestion.txtFileName || currentReportedQuestion.fileName || currentReportedQuestion.source || currentReportedQuestion.lecture || "غير محدد";
+                        }
+
                         document.getElementById('ri-options-modal').classList.add('active');
                     };
 
