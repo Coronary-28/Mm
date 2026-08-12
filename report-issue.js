@@ -6,10 +6,9 @@
     // ==========================================
     const style = document.createElement('style');
     style.textContent = `
-        /* زر الإبلاغ عن خطأ بجانب الأزرار الأخرى */
         .report-issue-btn {
             display: inline-block;
-            background-color: #dc2626 !important; /* لون أحمر */
+            background-color: #dc2626 !important;
             color: #ffffff !important;
             padding: 4px 10px;
             margin: 0 8px;
@@ -28,7 +27,6 @@
             transform: scale(1.05);
         }
         
-        /* تنسيقات النوافذ المنبثقة وثبات الألوان */
         .ri-modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -64,7 +62,6 @@
             background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #000 !important;
         }
         
-        /* أزرار خيارات الإبلاغ */
         .ri-option-btn {
             display: block;
             width: 100%;
@@ -82,7 +79,6 @@
         }
         .ri-option-btn:hover { background: #e2e8f0 !important; }
         
-        /* أزرار التأكيد والانتقال */
         .ri-action-container {
             display: flex;
             justify-content: space-between;
@@ -164,6 +160,10 @@
     // ==========================================
     let currentReportedQuestion = null;
     let selectedErrorType = "";
+    
+    // متغيرات لتخزين المادة والمحاضرة من زر الموقع
+    let extractedSubject = "غير محدد";
+    let extractedLecture = "غير محدد";
 
     const errorOptions = [
         "خطأ في السؤال",
@@ -186,7 +186,6 @@
         optionsContainer.appendChild(btn);
     });
 
-    // دالة لتنظيف النص من أي أكواد HTML إن وجدت لتجنب المشاكل في تيليجرام
     function getCleanText(rawText) {
         if (!rawText) return "";
         const temp = document.createElement('div');
@@ -206,30 +205,10 @@
             case "خطأ آخر": errorDetailsPhrase = "(   )"; break;
         }
 
-        // استخراج اسم المادة (البحث في عدة أماكن محتملة)
-        let subjectName = "غير محدد";
-        if (typeof state !== 'undefined') {
-            subjectName = (state.currentExam && state.currentExam.folderName) || 
-                          state.folderName || 
-                          currentReportedQuestion.folderName || 
-                          currentReportedQuestion.folder || 
-                          currentReportedQuestion.subject || 
-                          "غير محدد";
-        }
+        // استخدام القيم المستخرجة من زر الموقع
+        let finalSubjectName = extractedSubject;
+        let finalLectureName = extractedLecture;
 
-        // استخراج اسم المحاضرة (البحث في عدة أماكن محتملة)
-        let lectureName = "غير محدد";
-        if (typeof state !== 'undefined') {
-            lectureName = (state.currentExam && state.currentExam.txtFileName) || 
-                          state.txtFileName || 
-                          currentReportedQuestion.txtFileName || 
-                          currentReportedQuestion.fileName || 
-                          currentReportedQuestion.file || 
-                          currentReportedQuestion.source || 
-                          "غير محدد";
-        }
-
-        // استخراج نص السؤال
         let rawQuestionText = currentReportedQuestion.question || 
                               currentReportedQuestion.text || 
                               currentReportedQuestion.qText || 
@@ -237,22 +216,17 @@
                               "غير متوفر";
         let finalQuestionText = getCleanText(rawQuestionText);
 
-        // استخراج الخيارات
         let optionsText = "";
         if (currentReportedQuestion.options && Array.isArray(currentReportedQuestion.options)) {
             optionsText = currentReportedQuestion.options.map(opt => `\n- ${getCleanText(opt)}`).join('');
         }
 
-        // استخراج الجواب الصحيح
         let finalCorrectAnswer = getCleanText(currentReportedQuestion.correctAnswer) || "غير متوفر";
-        
-        // استخراج التوضيح
         let finalExplanation = getCleanText(currentReportedQuestion.explanation) || "لا يوجد توضيح";
 
-        // بناء النص النهائي تماماً كما طلبت
+        // بناء النص مطابقاً تماماً لطلبك
         const telegramText = `السلام عليكم
-أنا الان أقوم بحل امتحان في مادة "${subjectName}" وواجهت سؤال من محاضرة "${lectureName}" وأظن أن هناك خطأ في "${errorDetailsPhrase}" ، وهذا هو السؤال :
-
+أنا الان أقوم بحل امتحان في مادة "${finalSubjectName}" وواجهت سؤال من محاضرة "${finalLectureName}" وأظن أن هناك خطأ في "${errorDetailsPhrase}" ، وهذا هو السؤال :
 نَص السؤال :
 ${finalQuestionText}
 
@@ -279,7 +253,7 @@ ${finalExplanation}
     };
 
     // ==========================================
-    // 4. مراقب الحقن الذكي (يعتمد على زر المفضلة)
+    // 4. مراقب الحقن الذكي واستخراج البيانات من زر الموقع
     // ==========================================
     function injectReportButtons() {
         const favBtns = document.querySelectorAll('button[onclick*="toggleFavorite"]');
@@ -302,7 +276,28 @@ ${finalExplanation}
                         e.preventDefault();
                         e.stopPropagation(); 
                         
+                        // إعادة تهيئة المتغيرات
+                        extractedSubject = "غير محدد";
+                        extractedLecture = "غير محدد";
                         currentReportedQuestion = null;
+
+                        // 1. محاولة استخراج المادة والمحاضرة من زر الموقع المجاور
+                        const siblingButtons = parentContainer.querySelectorAll('button');
+                        siblingButtons.forEach(btn => {
+                            const onclickText = btn.getAttribute('onclick');
+                            // البحث عن أي زر لا يخص المفضلة أو العلم، ويحتوي على نصوص بين علامات تنصيص
+                            if (onclickText && !onclickText.includes('toggleFavorite') && !onclickText.includes('toggleFlag')) {
+                                // استخراج جميع النصوص الموجودة بين علامات التنصيص (المفردة أو المزدوجة)
+                                const matches = [...onclickText.matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]);
+                                // بناءً على ترتيب زر الموقع: [المادة، المحاضرة، الدفعة، الصفحة]
+                                if (matches.length >= 2) {
+                                    extractedSubject = matches[0];
+                                    extractedLecture = matches[1];
+                                }
+                            }
+                        });
+
+                        // 2. سحب بيانات السؤال 
                         if (typeof state !== 'undefined') {
                             if (state.currentExam && state.currentExam.questions) {
                                 currentReportedQuestion = state.currentExam.questions.find(q => q.id === qId);
